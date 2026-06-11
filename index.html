@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOVII — White Paper</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --accent: #00c9b7;
+    --accent-dim: #009e90;
+    --bg: #f5f6fa;
+    --surface: #ffffff;
+    --surface2: #eef0f5;
+    --text: #1a1d24;
+    --text-muted: #6b7080;
+    --border: #dde0e8;
+    --radius: 12px;
+  }
+  .dark {
+    --bg: #0b0d10;
+    --surface: #13161c;
+    --surface2: #1a1f28;
+    --text: #e4e7ed;
+    --text-muted: #8a8f9c;
+    --border: #232834;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 17px;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  p, li, td, th { overflow-wrap: break-word; word-break: break-word; }
+
+  /* Theme toggle */
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: background 0.3s, border-color 0.3s;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .theme-toggle:hover { border-color: var(--accent-dim); }
+  .theme-toggle span {
+    padding: 4px 12px;
+    border-radius: 100px;
+    transition: 0.25s ease;
+  }
+  .theme-toggle .active {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* Header / Hero */
+  /* Fixed top header */
+  .top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: rgba(245, 246, 250, 0.76);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .dark .top-header {
+    background: rgba(11, 13, 16, 0.72);
+  }
+  body.menu-open { overflow: hidden; }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 16px;
+  }
+  .header-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .header-logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+  .header-logo .dark-logo { display: none; }
+  .dark .header-logo .dark-logo { display: block; }
+  .dark .header-logo .light-logo { display: none; }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+  }
+  .header-nav a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: 0.2s;
+    white-space: nowrap;
+  }
+  .header-nav a:hover {
+    color: var(--text);
+    background: rgba(128,128,128,0.08);
+  }
+  .header-nav a.active {
+    color: var(--accent);
+    background: rgba(0,201,183,0.1);
+  }
+
+  .top-header .theme-toggle {
+    position: static;
+    flex-shrink: 0;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--text);
+    margin-left: auto;
+  }
+  .hamburger svg { display: block; }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 199;
+    background: rgba(245, 246, 250, 0.94);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    padding: 24px;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .dark .mobile-menu {
+    background: rgba(11, 13, 16, 0.92);
+  }
+  .mobile-menu.open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .mobile-menu a {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    padding: 14px 16px;
+    border-radius: 12px;
+    transition: 0.2s;
+  }
+  .mobile-menu a:hover,
+  .mobile-menu a:active {
+    background: rgba(128,128,128,0.1);
+    color: var(--accent);
+  }
+  .mobile-menu .theme-toggle {
+    position: static;
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+
+  body { padding-top: 60px; }
+
+  .hero {
+    padding: 80px 24px 60px;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(500px, 80vw);
+    height: min(500px, 80vw);
+    background: radial-gradient(ellipse, rgba(0,201,183,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(0,201,183,0.12);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 5px 18px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 5.5vw, 56px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 19px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero-meta {
+    margin-top: 20px;
+    font-size: 15px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Layout */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+
+  section { padding: 60px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  h2 + .subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+  h3 {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  p { margin-bottom: 16px; color: var(--text-muted); }
+  p strong { color: var(--text); }
+
+  ul, ol { margin: 0 0 20px 24px; color: var(--text-muted); }
+  li { margin-bottom: 6px; }
+  li strong { color: var(--text); }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+  .card h3 { font-size: 16px; margin-bottom: 4px; }
+  .card .value {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .card p { font-size: 15px; margin: 0; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; margin-bottom: 24px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: var(--surface);
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  td { color: var(--text-muted); }
+  td:first-child { font-weight: 500; color: var(--text); }
+
+  /* Highlight box */
+  .highlight {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+  .highlight strong { color: var(--accent); }
+
+  .calc-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .calc-block h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    font-size: 15px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+  }
+  .calc-row:last-child { border-bottom: none; }
+  .calc-row .label { color: var(--text-muted); }
+  .calc-row .value {
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-row.result {
+    border-bottom: none;
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 2px solid var(--accent);
+  }
+  .calc-row.result .value {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 17px;
+  }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 28px; margin-bottom: 24px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .tl-item .phase {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .tl-item h3 { font-size: 18px; }
+  .tl-item p { font-size: 15px; margin: 2px 0 0; }
+
+  /* Metrics row */
+  .metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 48px;
+    margin-bottom: 24px;
+  }
+  .metric .num { font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1.1; }
+  .metric .label { font-size: 14px; color: var(--text-muted); }
+
+  /* Tag */
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 2px 10px;
+    border-radius: 100px;
+    background: rgba(0,201,183,0.1);
+    color: var(--accent);
+    margin-right: 6px;
+    text-transform: uppercase;
+  }
+  .tag-date {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Nav */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  .toc-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
+  .toc ol { margin: 0; list-style: none; counter-reset: toc; }
+  .toc li { counter-increment: toc; margin-bottom: 4px; }
+  .toc li::before { content: counter(toc) ". "; color: var(--accent); font-weight: 600; }
+  .toc a { color: var(--text); text-decoration: none; font-size: 15px; }
+  .toc a:hover { color: var(--accent); }
+
+  /* Section reveal */
+  section {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Footer / CTA */
+  .cta-block {
+    text-align: center;
+    margin-top: 48px;
+    padding: 40px 32px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .cta-block h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .cta-block p { margin-bottom: 20px; }
+  .cta-block .cta-links {
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+  .cta-block .cta-links a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .cta-block .cta-links a:hover { text-decoration: underline; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 16px; }
+    .header-inner { padding: 0 12px; }
+    .hero { padding: 40px 12px 40px; }
+    section { padding: 32px 0; }
+    .card-grid { grid-template-columns: 1fr; }
+    .card-grid .card { padding: 16px; }
+    .header-nav { display: none; }
+    .top-header .theme-toggle { display: none; }
+    .hamburger { display: flex; }
+    .hero-meta { font-size: 13px; gap: 12px; }
+    .calc-block { padding: 16px; }
+    .calc-row { font-size: 14px; flex-wrap: wrap; gap: 4px; }
+    .calc-row .value { font-size: 14px; }
+    .table-wrap { margin: 0 -16px; border-radius: 0; }
+    .toc { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="header-inner">
+    <a href="#" class="header-logo">
+      <img class="light-logo" src="img/logos/lovii-logo.svg" alt="LOVII">
+      <img class="dark-logo" src="img/logos/lovii-logo_dark.svg" alt="LOVII">
+    </a>
+    <nav class="header-nav">
+      <a href="#exec">Резюме</a>
+      <a href="#done">Done</a>
+      <a href="#now">Now</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#architecture">Архит.</a>
+      <a href="#monetization">Монет.</a>
+      <a href="#unit">Юнит</a>
+      <a href="#horizons">Горизонты</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+      <span data-theme="dark">Dark</span>
+      <span class="active" data-theme="light">Light</span>
+    </button>
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Меню">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <a href="#exec" onclick="closeMenu()">Резюме</a>
+    <a href="#done" onclick="closeMenu()">Что сделано (Done)</a>
+    <a href="#now" onclick="closeMenu()">Текущий статус (Now)</a>
+    <a href="#roadmap" onclick="closeMenu()">Дорожная карта</a>
+    <a href="#architecture" onclick="closeMenu()">Архитектура</a>
+    <a href="#monetization" onclick="closeMenu()">Монетизация</a>
+    <a href="#unit" onclick="closeMenu()">Юнит-экономика</a>
+    <a href="#horizons" onclick="closeMenu()">Дальнейшие горизонты</a>
+  </nav>
+  <button class="theme-toggle" onclick="toggleTheme(); closeMenu()">
+    <span data-theme="dark">Dark</span>
+    <span class="active" data-theme="light">Light</span>
+  </button>
+</div>
+
+<header class="hero">
+  <div class="hero-badge">White Paper v1.22</div>
+  <h1>LOVII — <span>от района к Федерации</span></h1>
+  <p>White-label & SaaS-платформа для создания и масштабирования локальных маркетплейсов для микро- и малого бизнеса в отдельно взятом пространстве, фуд-корте, торговом центре, районе или городе.</p>
+  <div class="hero-meta">
+    <span>Дата: июнь 2026</span>
+    <span>Статус: MVP</span>
+    <span>ООО «Аксиома»</span>
+  </div>
+</header>
+
+<div class="container">
+
+<div class="toc">
+  <div class="toc-title">Содержание</div>
+  <ol>
+    <li><a href="#exec">резюме проекта</a></li>
+    <li><a href="#done">Что сделано (Done)</a></li>
+    <li><a href="#now">Текущий статус (Now)</a></li>
+    <li><a href="#roadmap">Дорожная карта</a></li>
+    <li><a href="#architecture">Архитектура</a></li>
+    <li><a href="#monetization">Монетизация</a></li>
+    <li><a href="#unit">Юнит-экономика</a></li>
+    <li><a href="#horizons">Дальнейшие горизонты</a></li>
+  </ol>
+</div>
+
+<!-- 1. Executive Summary -->
+<section id="exec">
+  <h2>1. Исполнительное резюме</h2>
+  <p class="subtitle">Рыночная ниша, гипотеза, модель</p>
+
+  <p><strong>LOVII</strong> — white-label SaaS-платформа, которая позволяет запустить маркетплейс микро- и малого бизнеса в <strong>отдельно взятом районе</strong> города за 5 минут.</p>
+
+  <p>Ключевая гипотеза: малый бизнес в спальных районах не идёт на маркетплейсы федерального масштаба (WB, Ozon, Яндекс) из-за <strong>дорогой логистики, высоких комиссий и жёстких требований к обороту</strong>. При этом жители района <strong>готовы покупать локально</strong>, если предложение собрано в одном месте и доставка занимает 15–30 минут. Жители знают всех локальных продавцов, но не всегда есть время зайти по пути и выбрать товар или позиции из меню и дождаться сборки/приготовления заказа. Но когда есть время идут на Яндекс/WB/Ozon и там выбирают доставку. Для локального бизнеса это большие расходы на комиссии платформ, но только так жители соседних парадных могут получить товар, продукты или еду.</p>
+
+  <p>LOVII создаёт изолированную экономику каждого района с собственной аудиторией, каталогом и курьерской сетью — на едином централизованном ядре.</p>
+
+  <div class="highlight">
+    <strong>Ёмкость рынка:</strong> только в Санкт-Петербурге ~40 спальных районов (локаций). При среднем GMV 5–10 млн ₽/мес на локацию — <strong>TAM 2–5 млрд ₽/год</strong> в одном городе.
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="num">40%</div><div class="label">Retention D30 (цель)</div></div>
+    <div class="metric"><div class="num">&gt;3</div><div class="label">LTV / CAC (цель)</div></div>
+    <div class="metric"><div class="num">6–8%</div><div class="label">Комиссия с транзакции</div></div>
+    <div class="metric"><div class="num">2 999 ₽</div><div class="label">PRO-подписка / мес</div></div>
+  </div>
+</section>
+
+<!-- 2. Done -->
+<section id="done">
+  <h2>2. Что сделано (Done)</h2>
+  <p class="subtitle">Бэклог выполненных работ за первый спринт</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="tag">Команда</span><span class="tag-date">09.25</span>
+      <h3>Собрана команда LOVII</h3>
+      <p>Единомышленники &amp; команда разработки. Оптимальная команда для запуска : DevOps, Backends, Frontends + менеджер проекта.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Документация</span><span class="tag-date">10.25</span>
+      <h3>Мокапы MVP: клиентские, бизнес и административные интерфейсы</h3>
+      <p>15 экранов: регистрация, авторизация, кабинет, профиль, каталоги, сценарии.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Брендинг</span><span class="tag-date">11.25</span>
+      <h3>Подготовлен логотип и нейминг</h3>
+      <p>Три варианта лого LOVII / ЛОВИ (основной, минималистичный, значок).</p>
+    </div>
+    <div class="card">
+      <span class="tag">Продукт</span><span class="tag-date">12.25</span>
+      <h3>LOVII Market</h3>
+      <p>Веб-витрина с каталогом товаров и услуг ритейла поставщиков.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Демо</span><span class="tag-date">04.26</span>
+      <h3>Тестовые стенды</h3>
+      <p>Три демо-среды: витрина покупателя, B2B-кабинет поставщика и админ-панель оператора.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Пилот</span><span class="tag-date">05.26</span>
+      <h3>Мини-пилот</h3>
+      <p>Проведено испытание с одной торговой точкой. Размещены QR-коды на столах нескольких партнёров. Продукт подтвердил спрос.</p>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Ключевой вывод:</strong> продукт сформулирован, бренд создан, витрина работает. Мини-пилот подтвердил спрос и необходимость. Следующий этап — масштабирование на 10–20 поставщиков в пилотном фуд-корте/районе.
+  </div>
+</section>
+
+<!-- 3. Now -->
+<section id="now">
+  <h2>3. Текущий статус (Now)</h2>
+  <p class="subtitle">Где мы находимся сегодня</p>
+
+  <p>Проект находится в фазе <strong>Pre-MVP</strong>. Запущены и работают:</p>
+
+  <ul>
+    <li><strong>Домен и хостинг</strong> — lovii.ru (основной — заглушка), web-test.lovii.ru (демо версия)</li>
+    <li><strong>LOVII</strong> — веб-витрина с каталогом товаров и услуг (каталог для каждого магазина)</li>
+    <li><strong>Презентационные материалы</strong> — лендинг и pitch-презентация для инвесторов и партнёров</li>
+    <li><strong>Брендбук</strong> — логотипы, цветовая схема, визуальный стиль (в процессе согласования)</li>
+  </ul>
+
+  <p>Текущий фокус — <strong>Выбор банка Партнера, юридическое описание пилота, получение номинального счета, поиск места запуска и первых 10–20 поставщиков</strong> в пилотном районе (Санкт-Петербург) и запуск MVP с реальными транзакциями.</p>
+
+  <div class="highlight">
+    <strong>Ближайшая веха:</strong> GMV 5 млн ₽/мес, 30+ активных точек, Retention D30 ≥ 40%.
+  </div>
+</section>
+
+<!-- 4. Roadmap -->
+<section id="roadmap">
+  <h2>4. Дорожная карта</h2>
+  <p class="subtitle">Три фазы: от района к Федерации</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="phase">Фаза 1 — MVP (6 мес)</div>
+      <h3>Запуск фуд-корта в пилотном пространстве (есть предложение от «Гостиного двора» на лето)</h3>
+      <p>10–20 поставщиков · Модуль «Каталог» · Приём онлайн-оплат · Проверка гипотез спроса и юнит-экономики · <strong>Критерий:</strong> GMV ≥ 5 млн ₽/мес, Retention D30 ≥ 40%, LTV/CAC &gt; 3</p>
+    </div>
+    <div class="tl-item">
+      <div class="phase">Фаза 2 — Сеть (12–18 мес)</div>
+      <h3>Репликация модели</h3>
+      <p>Подключение 3–5 новых районов · White-label узлы с единой аналитикой · PRO-подписка · Внешние B2B-партнёры (банки, телекомы) · <strong>Критерий:</strong> 200+ точек, 30% PRO, положительная EBITDA узла</p>
+    </div>
+    <div class="tl-item">
+      <div class="phase">Фаза 3 — Федерация (24+ мес)</div>
+      <h3>Федеральная сеть</h3>
+      <p>Кросс-локальный обмен (товары между районами) · Корпоративные программы · Масштабирование по РФ и СНГ · <strong>Критерий:</strong> Полная окупаемость платформы, NPS ≥ 40</p>
+    </div>
+  </div>
+
+  <p>Переход между фазами происходит <strong>только</strong> после достижения целевых показателей юнит-экономики на текущем этапе.</p>
+</section>
+
+<!-- 5. Architecture -->
+<section id="architecture">
+  <h2>5. Архитектура</h2>
+  <p class="subtitle">Централизованное ядро, локальная автономия</p>
+
+  <p>Архитектура LOVII построена по принципу <strong>white-label изоляции</strong>: каждый район (узел) работает как независимый маркетплейс с собственным каталогом, аудиторией и курьерской сетью, но на единой кодовой базе.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Компонент</th><th>Описание</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Центральное ядро (Core)</td><td>Единая кодовая база, финансовая маршрутизация, безопасность, аналитика</td></tr>
+        <tr><td>White-label узел (район)</td><td>Свой бренд, каталог, аудитория, курьерская сеть, цены. Абсолютно независимая экономика</td></tr>
+        <tr><td>API-слой</td><td>Открытые API для внешних интеграций: банки, телекомы, HR-системы, муниципалитеты</td></tr>
+        <tr><td>Финансовый модуль</td><td>Маршрутизация платежей, автоматическое распределение комиссий, отложенные выплаты</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight">
+    <strong>Ключевое преимущество:</strong> экономия на разработке (одно ядро), гибкость на периферии (каждый узел сам решает, как работать с локальным рынком).
+  </div>
+</section>
+
+<!-- 6. Monetization -->
+<section id="monetization">
+  <h2>6. Монетизация</h2>
+  <p class="subtitle">Четыре столпа выручки</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="value">6–8%</div>
+      <h3>Транзакционная комиссия</h3>
+      <p>С денежной части оплаты. 0% для оборота до 30 000 ₽/мес — порог входа для микробизнеса.</p>
+    </div>
+    <div class="card">
+      <div class="value">2 999 ₽</div>
+      <h3>PRO-подписка</h3>
+      <p>Фиксированная ставка в месяц. Комиссия снижается до 4–6%. Для активных поставщиков.</p>
+    </div>
+    <div class="card">
+      <div class="value">Реклама</div>
+      <h3>Продвижение</h3>
+      <p>Закреплённые позиции в витрине, нативные подборки, спонсорство категорий.</p>
+    </div>
+    <div class="card">
+      <div class="value">B2B API</div>
+      <h3>Интеграции</h3>
+      <p>Бартерный доступ к API для банков, телекомов, HR-систем и муниципалитетов.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Unit Economics -->
+<section id="unit">
+  <h2>7. Юнит-экономика</h2>
+  <p class="subtitle">Целевые показатели на этап MVP</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="value">5 млн ₽</div>
+      <p>GMV в месяц</p>
+    </div>
+    <div class="card">
+      <div class="value">500+</div>
+      <p>Активных пользователей</p>
+    </div>
+    <div class="card">
+      <div class="value">30+</div>
+      <p>Подключённых точек</p>
+    </div>
+    <div class="card">
+      <div class="value">40%</div>
+      <p>Retention Day 30</p>
+    </div>
+    <div class="card">
+      <div class="value">&gt; 3</div>
+      <p>LTV / CAC</p>
+    </div>
+  </div>
+
+  <div class="calc-block">
+    <h4>Базовый расчёт оборота одной точки</h4>
+    <div class="calc-row">
+      <span class="label">Средний чек</span>
+      <span class="value">1 200 ₽</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Транзакций в день</span>
+      <span class="value">4</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Дней в месяце</span>
+      <span class="value">30</span>
+    </div>
+    <div class="calc-row result">
+      <span class="label">Оборот одной точки / мес</span>
+      <span class="value">144 000 ₽</span>
+    </div>
+  </div>
+
+  <div class="calc-block">
+    <h4>Целевой расчёт для MVP</h4>
+    <div class="calc-row">
+      <span class="label">Целевой GMV / мес</span>
+      <span class="value">5 000 000 ₽</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Необходимо чеков / мес</span>
+      <span class="value">4 167</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Необходимо чеков / день</span>
+      <span class="value">~139</span>
+    </div>
+    <div class="calc-row">
+      <span class="label">Необходимо активных точек</span>
+      <span class="value">~35</span>
+    </div>
+    <div class="calc-row result">
+      <span class="label">Цель по точкам (с запасом)</span>
+      <span class="value">30+</span>
+    </div>
+  </div>
+
+  <p>При достижении этих показателей в пилотном районе платформа масштабируется на следующие локации. Каждый новый узел запускается только при условии положительной юнит-экономики предыдущего.</p>
+
+  <div class="highlight">
+    <strong>Принцип:</strong> Масштабирование начинается <strong>только</strong> после достижения юнит-экономики на предыдущем узле. Это исключает кассовые разрывы.
+  </div>
+</section>
+
+<!-- 8. Horizons -->
+<section id="horizons">
+  <h2>8. Дальнейшие горизонты</h2>
+  <p class="subtitle">Больше, чем просто витрина</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>B2G и муниципалитеты</h3>
+      <p>Помощник администрации по развитию МСП. Социальные льготы и сертификаты для локальных предпринимателей.</p>
+    </div>
+    <div class="card">
+      <h3>Экспансия в СНГ</h3>
+      <p>Репликация SaaS-модели в страны ближнего зарубежья с адаптацией под местное законодательство.</p>
+    </div>
+    <div class="card">
+      <h3>Локальные токены</h3>
+      <p>Эмиссия локальных цифровых валют для внутренних расчётов внутри районов. NFT-сертификаты.</p>
+    </div>
+  </div>
+
+  <p>Эти направления не входят в ближайший roadmap, но формируют долгосрочное видение продукта.</p>
+
+  <div class="cta-block">
+    <h3>Готовы построить цифровую инфраструктуру локальной экономики?</h3>
+    <p>LOVII — от района к Федерации</p>
+    <p class="cta-links">
+      <strong>Email:</strong> <a href="mailto:hello@axiiom.ru">hello@axiiom.ru</a> ·
+      <strong>Тел.:</strong> <a href="tel:+78129287478">+7 812 928-74-78</a>
+    </p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  ООО «Аксиома» · ИНН 7842223709 · г. Санкт-Петербург, Думская ул., 4<br>
+  © 2026 — White Paper v1.22
+</footer>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.classList.toggle('dark');
+  document.querySelectorAll('.theme-toggle span').forEach(el => {
+    el.classList.toggle('active', isDark ? el.dataset.theme === 'dark' : el.dataset.theme === 'light');
+  });
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+const saved = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (saved === 'dark' || (!saved && prefersDark)) {
+  document.documentElement.classList.add('dark');
+  document.querySelectorAll('.theme-toggle span').forEach(el => el.classList.toggle('active', el.dataset.theme === 'dark'));
+}
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.classList.remove('menu-open');
+}
+
+// Section reveal + active nav
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.header-nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
