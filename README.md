@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/bestdeejay" target="_blank">
+  <a href="https://github.com/bestdeejay-design" target="_blank">
     <img src="https://capsule-render.vercel.app/api?type=waving&height=290&color=0:0ABAB5,100:F64A8A&text=LOVII&desc=Local%20Marketplaces%20Platform&fontColor=ffffff&animation=fadeIn&fontAlignY=38&descSize=24&descAlignY=60" alt="header" />
   </a>
 </p>
@@ -42,7 +42,7 @@ Static one-page white paper (HTML/CSS/JS, no build step). Published via GitHub P
 © 2026 LOVII
 
 <p align="center">
-  <a href="https://github.com/bestdeejay" target="_blank">
-    <img src="https://capsule-render.vercel.app/api?type=waving&height=80&color=0:F64A8A,100:0ABAB5&text=@bestdeejay&fontColor=FFFFFF&fontSize=21&section=footer&fontAlignY=80&animation=twinkling" alt="footer" />
+  <a href="https://github.com/bestdeejay-design" target="_blank">
+    <img src="https://capsule-render.vercel.app/api?type=waving&height=80&color=0:F64A8A,100:0ABAB5&text=@bestdeejay-design&fontColor=FFFFFF&fontSize=21&section=footer&fontAlignY=80&animation=twinkling" alt="footer" />
   </a>
 </p>
