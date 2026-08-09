@@ -3,3 +3,6 @@
 .env.local
 node_modules/
 *.log
+.playwright-mcp/
+.omo/
+.codegraph
