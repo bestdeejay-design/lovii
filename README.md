@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/bestdeejay" target="_blank">
+    <img src="https://capsule-render.vercel.app/api?type=waving&height=290&color=0:0ABAB5,100:F64A8A&text=LOVII&desc=Local%20Marketplaces%20Platform&fontColor=ffffff&animation=fadeIn&fontAlignY=38&descSize=24&descAlignY=60" alt="header" />
+  </a>
+</p>
+
 # LOVII — Local Marketplaces Platform
 
 LOVII is a white-label SaaS platform for launching and scaling local marketplaces for micro and small businesses in a district, food court, shopping mall, or city area.
@@ -35,4 +41,8 @@ Static one-page white paper (HTML/CSS/JS, no build step). Published via GitHub P
 
 © 2026 LOVII
 
-![footer](https://capsule-render.vercel.app/api?type=waving&height=100&color=0:00c9b7,100:f64a8a&section=footer&textBg=false&desc=@bestdeejay%20desinger&descSize=20&descAlign=50)
+<p align="center">
+  <a href="https://github.com/bestdeejay" target="_blank">
+    <img src="https://capsule-render.vercel.app/api?type=waving&height=80&color=0:F64A8A,100:0ABAB5&text=@bestdeejay&fontColor=FFFFFF&fontSize=21&section=footer&fontAlignY=80&animation=twinkling" alt="footer" />
+  </a>
+</p>
