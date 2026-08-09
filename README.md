@@ -34,3 +34,5 @@ Static one-page white paper (HTML/CSS/JS, no build step). Published via GitHub P
 ---
 
 © 2026 LOVII
+
+![footer](https://capsule-render.vercel.app/api?type=waving&height=100&color=0:00c9b7,100:f64a8a&section=footer&textBg=false&desc=@bestdeejay%20desinger&descSize=20&descAlign=50)
