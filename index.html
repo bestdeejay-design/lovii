@@ -57,11 +57,12 @@
   :root {
     --accent: #00c9b7;
     --accent-dim: #009e90;
+    --accent-ink: #06383a;
     --bg: #f5f6fa;
     --surface: #ffffff;
     --surface2: #eef0f5;
     --text: #1a1d24;
-    --text-muted: #6b7080;
+    --text-muted: #5f6672;
     --border: #dde0e8;
     --radius: 12px;
   }
@@ -74,7 +75,7 @@
     --border: #232834;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   .visually-hidden {
     position: absolute; width: 1px; height: 1px; margin: -1px;
     padding: 0; overflow: hidden; clip: rect(0 0 0 0);
@@ -122,7 +123,7 @@
   }
   .theme-toggle .active {
     background: var(--accent);
-    color: #fff;
+    color: var(--accent-ink);
   }
 
   /* Header / Hero */
@@ -413,7 +414,7 @@
     padding: 24px;
     margin-bottom: 24px;
   }
-  .calc-block h4 {
+  .calc-block h3 {
     font-size: 15px;
     font-weight: 700;
     margin-bottom: 16px;
@@ -592,6 +593,12 @@
     .calc-row .value { font-size: 14px; }
     .table-wrap { margin: 0 -16px; border-radius: 0; }
     .toc { padding: 16px; }
+  }
+
+  /* Планшеты: 8 пунктов навигации не влезают — гамбургер вместо них */
+  @media (max-width: 1000px) {
+    .header-nav { display: none; }
+    .hamburger { display: flex; }
   }
 </style>
 </head>
@@ -867,7 +874,7 @@
   </div>
 
   <div class="calc-block">
-    <h4>Базовый расчёт оборота одной точки</h4>
+    <h3>Базовый расчёт оборота одной точки</h3>
     <div class="calc-row">
       <span class="label">Средний чек</span>
       <span class="value">1 200 ₽</span>
@@ -887,7 +894,7 @@
   </div>
 
   <div class="calc-block">
-    <h4>Целевой расчёт для MVP</h4>
+    <h3>Целевой расчёт для MVP</h3>
     <div class="calc-row">
       <span class="label">Целевой GMV / мес</span>
       <span class="value">5 000 000 ₽</span>
