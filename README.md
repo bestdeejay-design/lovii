@@ -6,6 +6,8 @@
 
 # LOVII — Local Marketplaces Platform
 
+**🌐 Versions:** [English](README.md) · [Русский](README.ru.md) · [Website](https://lovii.ru)
+
 LOVII is a white-label SaaS platform for launching and scaling local marketplaces for micro and small businesses in a district, food court, shopping mall, or city area.
 
 - **Scheduled delivery**: 15–30 minutes within the district
@@ -15,7 +17,7 @@ LOVII is a white-label SaaS platform for launching and scaling local marketplace
 
 ## Repository
 
-Static one-page white paper (HTML/CSS/JS, no build step). Published via GitHub Pages at [lovii.ru](https://lovii.ru).
+Static one-page white paper (HTML/CSS/JS, no build step).
 
 | File | Purpose |
 |---|---|
