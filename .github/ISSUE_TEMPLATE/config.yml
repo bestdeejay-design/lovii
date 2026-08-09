@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Website
+    url: https://lovii.ru/
+    about: LOVII white paper landing
+  - name: Support
+    url: https://github.com/bestdeejay-design/lovii/blob/main/SUPPORT.md
+    about: Where to get help

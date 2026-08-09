@@ -1,0 +1,27 @@
+name: 🐛 Bug Report
+description: Report a bug, broken link, or factual error
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue in the LOVII repository.
+  - type: dropdown
+    id: type
+    attributes:
+      label: Issue type
+      options:
+        - Broken link
+        - Factual error / outdated info
+        - Landing page bug / rendering issue
+        - Content suggestion
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the problem
+      description: What is wrong, and what did you expect instead?
+    validations:
+      required: true

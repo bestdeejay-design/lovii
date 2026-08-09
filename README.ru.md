@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/bestdeejay-design" target="_blank">
-    <img src="https://capsule-render.vercel.app/api?type=waving&height=290&color=0:0ABAB5,100:F64A8A&text=LOVII&desc=%D0%9B%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%BF%D0%BB%D0%B5%D0%B9%D1%81%D1%8B%20%D1%80%D0%B0%D0%B9%D0%BE%D0%BD%D0%BE%D0%B2&fontColor=ffffff&animation=fadeIn&fontAlignY=38&descSize=24&descAlignY=60" alt="header" />
+    <img src="assets/header.svg" alt="header" />
   </a>
 </p>
 
@@ -45,6 +45,6 @@ LOVII — white-label SaaS-платформа для создания и мас�
 
 <p align="center">
   <a href="https://github.com/bestdeejay-design" target="_blank">
-    <img src="https://capsule-render.vercel.app/api?type=waving&height=80&color=0:F64A8A,100:0ABAB5&text=@bestdeejay-design&fontColor=FFFFFF&fontSize=21&section=footer&fontAlignY=80&animation=twinkling" alt="footer" />
+    <img src="assets/footer.svg" alt="footer" />
   </a>
 </p>

@@ -1,0 +1,14 @@
+name: ✨ Feature Request
+description: Suggest an improvement to the white paper or landing
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement.
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to add or change?
+    validations:
+      required: true
