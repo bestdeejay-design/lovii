@@ -38,13 +38,13 @@ Static one-page white paper (HTML/CSS/JS, no build step).
 The full, up-to-date open information about the LOVII platform — including the public offers and the funds-flow scheme — is published as a separate resource:
 
 - **Platform overview & public documents**: [axiiom-ru.github.io/lovii](https://axiiom-ru.github.io/lovii/)
-- **Public documents (offers, funds flow)**: [axiiom-ru.github.io/lovii/docs](https://axiiom-ru.github.io/lovii/docs/)
+- **Public documents (offers, funds flow)**: [axiiom-ru.github.io/lovii](https://axiiom-ru.github.io/lovii/)
 
 ## Contact
 
 - Email: hello@axiiom.ru
 - Phone: +7 812 928-74-78
-- Legal: ООО «Аксиома», St. Petersburg, Dumskaya St. 4
+- Legal: ООО «Аксиома», St. Petersburg
 
 ---
 

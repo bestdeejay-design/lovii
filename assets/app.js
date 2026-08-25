@@ -63,4 +63,6 @@
   } else {
     for (var s2 = 0; s2 < sections.length; s2++) sections[s2].classList.add('revealed');
   }
+
+  // Hero ambient parallax moved to assets/hero.js (optional, removable with assets/hero.css)
 })();

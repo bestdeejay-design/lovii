@@ -9,4 +9,4 @@ LOVII — white-label SaaS platform for local marketplaces.
 | Website | [lovii.ru](https://lovii.ru/) |
 | Telegram | [@bestdeejay](https://t.me/bestdeejay) |
 
-Legal: ООО «Аксиома», St. Petersburg, Dumskaya St. 4
+Legal: ООО «Аксиома», St. Petersburg
