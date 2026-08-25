@@ -1,0 +1,17 @@
+{
+  "name": "LOVII — локальные маркетплейсы",
+  "short_name": "LOVII",
+  "description": "White-label SaaS-платформа локальных маркетплейсов района: товары малого бизнеса, доставка 15–30 минут.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f6fa",
+  "theme_color": "#00c9b7",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
