@@ -6,14 +6,14 @@
 
 # LOVII — Local Marketplaces Platform
 
-**🌐 Versions:** [English](README.md) · [Русский](README.ru.md) · [Website](https://lovii.ru)
+**🌐 Versions:** [English](README.md) · [Русский](README.ru.md) · [Website](https://lovii.ru) · [Open info](https://axiiom-ru.github.io/lovii)
 
 LOVII is a white-label SaaS platform for launching and scaling local marketplaces for micro and small businesses in a district, food court, shopping mall, or city area.
 
 - **Scheduled delivery**: 15–30 minutes within the district
 - **Favorite local businesses**: catalog of goods and services from neighborhood merchants
 - **Isolated economy per district**: own audience, catalog, courier network — one core
-- **Status**: Pre-MVP, mini-pilot completed (Saint Petersburg, Russia)
+- **Status**: MVP, mini-pilot completed (Saint Petersburg, Russia)
 
 ## Repository
 
@@ -32,6 +32,13 @@ Static one-page white paper (HTML/CSS/JS, no build step).
 1. MVP — food court launch (10–20 suppliers, online payments)
 2. Network — replication to 3–5 new districts
 3. Federation — cross-local exchange, RU/CIS scaling
+
+## Open Information
+
+The full, up-to-date open information about the LOVII platform — including the public offers and the funds-flow scheme — is published as a separate resource:
+
+- **Platform overview & public documents**: [axiiom-ru.github.io/lovii](https://axiiom-ru.github.io/lovii/)
+- **Public documents (offers, funds flow)**: [axiiom-ru.github.io/lovii/docs](https://axiiom-ru.github.io/lovii/docs/)
 
 ## Contact
 
