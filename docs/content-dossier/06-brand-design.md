@@ -4,6 +4,9 @@
 > Style guide: `/style-guide.html` (собирается `tools/build-style-guide.py`).
 > Всё дизайнить ТОЛЬКО токенами и паттернами отсюда. Полные правила — docs/00–13.
 
+> **v1.10.0 (2026-09-04): появился ЕДИНЫЙ ФАЙЛ ДС — `lovii.css` (LOVII UI v1.0).**
+> Новый сайт подключает снапшот `assets/lovii.css` одним линком (уже лежит в репо lovii) — токены + база + все компоненты. Классы канонические (каталог — examples/08, работает на lovii.css). Править снапшот запрещено: правки в lovii-design (css/lovii-components.css / tokens/tokens.css) → build-lovii-css.py → sync-lovii-css.py. Контракт — AGENTS.md пр.14, SKILL.md. Паритет доказан (дифф 0 px).
+
 ## 1. Версия и ядро
 
 - Текущая версия канона: **v1.9.1** (tokens/tokens.css + tokens/design-tokens.json).
