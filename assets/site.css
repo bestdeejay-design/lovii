@@ -116,6 +116,8 @@ section[id] { scroll-margin-top: calc(var(--lv-header-h) + 16px); }
 }
 html[data-theme="dark"] .hero-kicker { color: var(--lv-pink); }
 .hero-kicker svg { width: 15px; height: 15px; stroke-width: 2.4; }
+/* Голубь Ло — fill-маскот (не stroke-система) */
+.hero-kicker .ico-lo { width: 19px; height: 19px; }
 .hero h1 {
   font-size: clamp(36px, 6vw, 60px); font-weight: 800;
   line-height: 1.12; letter-spacing: -.02em; color: var(--lv-ink);
@@ -278,6 +280,8 @@ html[data-theme="dark"] a:not(.btn) { color: var(--lv-pink); }
 }
 .doc-card .card-ico.tiffany { background: var(--lv-soft-tiffany); color: var(--lv-tiffany-text); }
 .doc-card .card-ico.gold { background: var(--lv-soft-gold); color: var(--lv-gold-text); }
+.doc-card .card-ico.lo { background: var(--lv-grey-soft); }
+.doc-card .card-ico.lo .ico-lo { width: 27px; height: 27px; }
 .doc-card .card-ico .ico { width: 21px; height: 21px; }
 .doc-card h3 { font-size: 16px; margin-bottom: 5px; }
 .doc-card p { font-size: 14.5px; margin: 0; line-height: 1.6; }
@@ -426,6 +430,7 @@ html[data-theme="dark"] .doc-card .card-ico.tiffany,
 html[data-theme="dark"] .doc-card .card-ico.gold {
   background: var(--lv-soft-pink); color: var(--lv-pink);
 }
+html[data-theme="dark"] .doc-card .card-ico.lo { background: var(--lv-grey-soft); }
 
 /* Врезка: рамка розовая, текст спокойный */
 html[data-theme="dark"] .highlight strong { color: var(--lv-ink); }
