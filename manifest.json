@@ -4,8 +4,8 @@
   "description": "White-label SaaS-платформа локальных маркетплейсов района: товары малого бизнеса, доставка 15–30 минут.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f5f6fa",
-  "theme_color": "#00c9b7",
+  "background_color": "#f8f5f0",
+  "theme_color": "#f64a8a",
   "icons": [
     {
       "src": "favicon.svg",
