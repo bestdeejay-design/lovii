@@ -1,5 +1,5 @@
 /* ============================================================
-   LOVII «Лови» — СНАПШОТ КАНОНА v1.8.0 для сайта lovii.ru
+   LOVII «Лови» — СНАПШОТ КАНОНА v1.9.0 для сайта lovii.ru
    Источник: bestdeejay-design/lovii-design → tokens/tokens.css (не редактировать здесь)
    Источник истины: lovii.mobiap.com (репо lovii_demo, css/lovii.css)
    Репо дизайн-системы: bestdeejay-design/lovii-design
@@ -164,8 +164,10 @@
   --lv-sand-soft: #38302a;
   --lv-grey-soft: #2e2535;
 
-  --lv-gold-text: #e2c88c;
-  --lv-tiffany-text: #6fd9d4;
+  /* v1.9 «Тихая тёмная тема» (docs/05): тексты-пары приглушены —
+     неон на тёмном кричал; пыльные варианты, контраст ≥ 8:1 */
+  --lv-gold-text: #d6bd8d;
+  --lv-tiffany-text: #82c8c3;
   --lv-green-text: #a8d686;
   --lv-green-soft: rgba(110, 180, 80, .16);
 

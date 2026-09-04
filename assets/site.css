@@ -168,17 +168,12 @@ html[data-theme="dark"] .btn-ghost { color: var(--lv-pink); }
   width: min(560px, 90vw); height: min(560px, 90vw); border-radius: 50%;
   background: radial-gradient(ellipse, rgba(246, 74, 138, .07) 0%, transparent 68%);
 }
-html[data-theme="dark"] .ambient::before {
-  background: radial-gradient(ellipse, rgba(10, 186, 181, .09) 0%, transparent 68%);
-}
 .ambient .ring {
   position: absolute; left: var(--x); top: var(--y); width: var(--s); height: var(--s);
   border-radius: 50%; border: 1.5px solid rgba(246, 74, 138, .22);
   transform: translate3d(0, var(--py, 0), 0);
 }
-html[data-theme="dark"] .ambient .ring { border-color: rgba(111, 217, 212, .28); }
 .ambient .ring.tiffany { border-color: rgba(10, 186, 181, .3); border-width: 1px; }
-html[data-theme="dark"] .ambient .ring.tiffany { border-color: rgba(246, 74, 138, .26); }
 .ambient .ring.gold { border-color: rgba(212, 168, 84, .38); border-width: 1px; }
 .ambient .pulse {
   position: absolute; left: var(--x); top: var(--y); width: var(--s); height: var(--s);
@@ -202,8 +197,6 @@ html[data-theme="dark"] .ambient .ring.tiffany { border-color: rgba(246, 74, 138
 .wave svg { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; display: block; }
 .wampath1 { fill: rgba(10, 186, 181, .1); }
 .wampath2 { fill: rgba(246, 74, 138, .08); }
-html[data-theme="dark"] .wampath1 { fill: rgba(111, 217, 212, .08); }
-html[data-theme="dark"] .wampath2 { fill: rgba(246, 74, 138, .07); }
 @media print { .wave { display: none; } }
 
 /* ---------- Контейнер и секции ---------- */
@@ -223,9 +216,6 @@ main section:first-of-type { border-top: none; }
 .sec-kicker.pink { background: var(--lv-soft-pink); color: var(--lv-pink); }
 .sec-kicker.gold { background: var(--lv-soft-gold); color: var(--lv-gold-text); }
 .sec-kicker .ico { width: 14px; height: 14px; stroke-width: 2.2; }
-html[data-theme="dark"] .sec-kicker { color: var(--lv-tiffany-text); }
-html[data-theme="dark"] .sec-kicker.pink { color: var(--lv-pink); }
-html[data-theme="dark"] .sec-kicker.gold { color: var(--lv-gold-text); }
 
 h2 { font-size: 28px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 8px; color: var(--lv-ink); }
 h2 + .subtitle { color: var(--lv-dim); font-size: 16px; margin-bottom: 30px; }
@@ -262,7 +252,6 @@ html[data-theme="dark"] a:not(.btn) { color: var(--lv-pink); }
   padding: 18px 22px; margin: 0 0 26px; font-size: 15px;
 }
 .highlight strong { color: var(--lv-pink-dark); }
-html[data-theme="dark"] .highlight strong { color: var(--lv-pink); }
 
 /* .stats — метрики */
 .stats-row { display: flex; flex-wrap: wrap; gap: 26px 52px; margin: 0 0 28px; }
@@ -306,7 +295,6 @@ html[data-theme="dark"] .highlight strong { color: var(--lv-pink); }
   padding: 3px 10px; border-radius: var(--lv-r-pill);
   background: var(--lv-soft-pink); color: var(--lv-pink); text-transform: uppercase;
 }
-html[data-theme="dark"] .tag { color: var(--lv-pink); }
 .tag-date {
   display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 9px;
   border-radius: var(--lv-r-pill); background: var(--lv-grey-soft);
@@ -408,6 +396,75 @@ footer a:hover { text-decoration: underline; }
   .js main section { opacity: 1; transform: none; transition: none; }
   .doc-card:hover, .btn:hover { transform: none; }
 }
+
+/* ---------- Тихая тёмная тема (канон v1.9.0: docs/05 + docs/13 §4) ----------
+   Один акцент в кадре — pink (CTA, ссылки, result-строки, toc-номера).
+   Данные — цветом чернил; tiffany/gold — только микрометки (точки фаз).
+   Декор — почти монохром. Светлая тема не тронута. */
+
+/* Цифры-данные — чернила (три цвета в одном ряду = пестрота) */
+html[data-theme="dark"] .stat .num,
+html[data-theme="dark"] .stat.tiffany .num,
+html[data-theme="dark"] .stat.gold .num,
+html[data-theme="dark"] .doc-card .value,
+html[data-theme="dark"] .doc-card .value.tiffany,
+html[data-theme="dark"] .doc-card .value.gold { color: var(--lv-ink); }
+
+/* Кикер секции — нейтральная пилюля */
+html[data-theme="dark"] .sec-kicker,
+html[data-theme="dark"] .sec-kicker.pink,
+html[data-theme="dark"] .sec-kicker.gold {
+  background: var(--lv-surface); color: var(--lv-dim);
+}
+
+/* Теги — нейтральные (как tag-date) */
+html[data-theme="dark"] .tag { background: var(--lv-surface); color: var(--lv-dim); }
+
+/* Чип-иконка карточки — единая бренд-гамма вместо трёхцветной череды */
+html[data-theme="dark"] .doc-card .card-ico,
+html[data-theme="dark"] .doc-card .card-ico.tiffany,
+html[data-theme="dark"] .doc-card .card-ico.gold {
+  background: var(--lv-soft-pink); color: var(--lv-pink);
+}
+
+/* Врезка: рамка розовая, текст спокойный */
+html[data-theme="dark"] .highlight strong { color: var(--lv-ink); }
+
+/* Таймлайн: подписи фаз тихие, цвет — в 12px-точке */
+html[data-theme="dark"] .tl-item .phase,
+html[data-theme="dark"] .tl-item.phase-2 .phase,
+html[data-theme="dark"] .tl-item.phase-3 .phase { color: var(--lv-dim); }
+
+/* Hero-градиент без циана: розовый → шампань */
+html[data-theme="dark"] .hero h1 .grad {
+  background: linear-gradient(100deg, var(--lv-pink) 15%, var(--lv-sand) 85%);
+  -webkit-background-clip: text; background-clip: text;
+}
+
+/* Ambient-декор: кольца монохромные (hairline), свечение и пульсы — розовые */
+html[data-theme="dark"] .ambient::before {
+  background: radial-gradient(ellipse, rgba(246, 74, 138, .06) 0%, transparent 68%);
+}
+html[data-theme="dark"] .ambient .ring,
+html[data-theme="dark"] .ambient .ring.tiffany {
+  border-color: var(--lv-hairline);
+  border-width: 1.5px;
+}
+html[data-theme="dark"] .ambient .ring.gold {
+  border-color: color-mix(in srgb, var(--lv-sand) 26%, transparent);
+  border-width: 1px;
+}
+html[data-theme="dark"] .ambient .pulse { background: var(--lv-pink); animation-name: lvPulseQuiet; }
+html[data-theme="dark"] .ambient .pulse.tiffany,
+html[data-theme="dark"] .ambient .pulse.gold { display: none; }
+@keyframes lvPulseQuiet {
+  0%, 100% { transform: translate3d(0, var(--py, 0), 0) scale(1); opacity: .32; }
+  50% { transform: translate3d(0, var(--py, 0), 0) scale(1.5); opacity: .1; }
+}
+
+/* Wave — тихая */
+html[data-theme="dark"] .wampath1 { fill: rgba(130, 200, 195, .05); }
+html[data-theme="dark"] .wampath2 { fill: rgba(246, 74, 138, .04); }
 
 /* ---------- Адаптив (литералы в @media — var() нельзя, docs/10 §2) ---------- */
 @media (max-width: 1000px) {
