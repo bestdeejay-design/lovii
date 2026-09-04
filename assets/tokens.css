@@ -1,7 +1,7 @@
 /* ============================================================
    LOVII «Лови» — СНАПШОТ КАНОНА v1.9.0 для сайта lovii.ru
    Источник: bestdeejay-design/lovii-design → tokens/tokens.css (не редактировать здесь)
-   Источник истины: lovii.mobiap.com (репо lovii_demo, css/lovii.css)
+   Источник истины: lovii.mobiap.com (репо lovii-demo, css/lovii.css)
    Репо дизайн-системы: bestdeejay-design/lovii-design
 
    Как подключать:
@@ -9,8 +9,8 @@
    Как использовать: только var(--lv-*). Хардкод цветов/теней запрещён.
 
    Совместимость (маппинг легаси-имён):
-     lovii_demo  css/lovii.css : --pink, --bg, --card, --soft-pink …
-     lovii-site  globals.css   : --color-lovii-* (Tailwind), --lv-* (частично)
+     lovii-demo  css/lovii.css : --pink, --bg, --card, --soft-pink …
+     lovii-legacy (бывш. lovii-site)  globals.css   : --color-lovii-* (Tailwind), --lv-* (частично)
    ============================================================ */
 
 /* ------------------------------------------------------------
