@@ -55,3 +55,24 @@ The full, up-to-date open information about the LOVII platform — including the
     <img src="assets/footer.svg" alt="footer" />
   </a>
 </p>
+
+---
+
+> 📍 **Этот репозиторий:** **Product site · lovii.ru** — you are here.
+
+---
+
+## 🗺️ LOVII Project Map — every address in one place
+
+> Network rule: from any single address you can find all the others.
+
+| Project | Repository | Live URL | What it is |
+|---|---|---|---|
+| **LOVII Design System** | [lovii-design](https://github.com/bestdeejay-design/lovii-design) | [bestdeejay-design.github.io/lovii-design](https://bestdeejay-design.github.io/lovii-design/) | Brand canon: tokens, docs, style guide, icons. Single source of style truth |
+| **Product site · lovii.ru** | [lovii](https://github.com/bestdeejay-design/lovii) | [lovii.ru](https://lovii.ru) | White paper v2.0 on the DS canon; target home of the final product site |
+| **Investor portal** | [lovii_presentation](https://github.com/bestdeejay-design/lovii_presentation) | [invest.lovii.ru](https://invest.lovii.ru) | Equity offering: pitch, strategy, valuation calculator, whitepaper, risk policy, knowledge base (CANON, financial model), PDFs |
+| **Demo storefront** | [lovii_demo](https://github.com/bestdeejay-design/lovii_demo) | [lovii.mobiap.com](https://lovii.mobiap.com) | Live capsule demo: customer, supplier B2B cabinet, admin panel |
+| **Legacy site** | [lovii-site](https://github.com/bestdeejay-design/lovii-site) | [bestdeejay-design.github.io/lovii-site](https://bestdeejay-design.github.io/lovii-site/) | First static site (pre-design-system); archived after the final lovii.ru release |
+
+**Style pipeline:** `lovii-design` (canon) → `lovii` (lovii.ru) → `lovii_demo` · `lovii-site`.
+**Product facts:** investor-portal knowledge base — `lovii_presentation/docs/knowledge-base/`; marketing never distorts facts.
