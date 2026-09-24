@@ -1,3 +1,4 @@
+# lovii.ru — открыто для индексации
 User-agent: *
 Allow: /
 

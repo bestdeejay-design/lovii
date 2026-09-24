@@ -1,476 +1,82 @@
-<!DOCTYPE html>
-<html lang="ru" class="js" data-theme="light">
+<!doctype html>
+<html lang="ru">
 <head>
-  <noscript><style>.js main section{opacity:1!important;transform:none!important}</style></noscript>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>LOVII — локальные маркетплейсы и доставка в районе города</title>
-<meta name="description" content="LOVII — SaaS-платформа локальных маркетплейсов районов Санкт-Петербурга: товары малого бизнеса, доставка 15–30 мин. MVP, мини-пилот проведён.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LOVII — платформа локальной экономики</title>
+<meta name="description" content="LOVII соединяет жителей, точки МСП, представителей, амбассадоров и инвесторов: витрина района, общая программа лояльности (1 балл = 1 ₽), платежи через банк-партнёр и честное распределение дохода 40/40/20.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://lovii.ru/">
-<link rel="sitemap" href="/sitemap.xml">
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" id="metaTheme" content="#f64a8a">
-<!-- Anti-FOUC (канон docs/05): тема ставится ДО CSS -->
-<script>
-(function(){try{var t=localStorage.getItem('lovii_theme');
-if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
-document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
-</script>
-<!-- ГЕО (Яндекс) -->
-<meta name="geo.region" content="RU-SPE">
-<meta name="geo.placename" content="Санкт-Петербург">
-<meta name="geo.position" content="59.9311;30.3609">
-<!-- Open Graph / Social -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://lovii.ru/">
 <meta property="og:site_name" content="LOVII">
-<meta property="og:title" content="LOVII — локальные маркетплейсы и доставка в районе города">
-<meta property="og:description" content="White-label & SaaS-платформа локальных маркетплейсов районов. Запустите маркетплейс своего района за 5 минут. Доставка 15–30 мин.">
-<meta property="og:image" content="https://lovii.ru/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="LOVII — от района к Федерации. Белый paper v2.0 на дизайн-системе «Лови»">
 <meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="LOVII — платформа локальной экономики">
+<meta property="og:description" content="Одна платформа для района: точки МСП получают цифровой канал без агрегаторов, жители — баллы 1:1, партнёры — доход от сети. Выбери свою роль.">
+<meta property="og:url" content="https://lovii.ru/">
+<meta property="og:image" content="https://lovii.ru/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LOVII — локальные маркетплейсы и доставка в районе города">
-<meta name="twitter:description" content="LOVII — White-label SaaS-платформа локальных маркетплейсов в районах Санкт-Петербурга.">
+<meta name="twitter:title" content="LOVII — платформа локальной экономики">
+<meta name="twitter:description" content="Одна платформа для района: точки МСП получают цифровой канал без агрегаторов, жители — баллы 1:1, партнёры — доход от сети. Выбери свою роль.">
 <meta name="twitter:image" content="https://lovii.ru/og-image.png">
-<meta name="twitter:image:alt" content="LOVII — от района к Федерации">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<!-- Schema.org JSON-LD: Organization -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "LOVII",
-  "url": "https://lovii.ru/",
-  "description": "White-label SaaS-платформа для создания и масштабирования локальных маркетплейсов в районах города.",
-  "legalName": "ООО «Аксиома»",
-  "foundingLocation": "Санкт-Петербург, Россия",
-  "areaServed": "Санкт-Петербург, Россия",
-  "telephone": "+78129287478",
-  "email": "hello@axiiom.ru",
-  "vatID": "7842223709",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "ул. Профессора Качалова, д. 15А, лит. А",
-    "addressLocality": "Санкт-Петербург",
-    "addressCountry": "RU",
-    "postalCode": "192029"
-  }
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/tokens.css">
-<link rel="stylesheet" href="assets/site.css">
+<meta name="theme-color" id="metaTheme" content="#f64a8a">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="icon" href="./favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="./lovii-icon-180.png">
+<link rel="manifest" href="./manifest.webmanifest">
+<script>(function(){try{var t=localStorage.getItem('lovii_theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var m=document.getElementById('metaTheme');if(m)m.setAttribute('content',t==='dark'?'#171219':'#f64a8a')}catch(e){}})();</script>
+<link rel="stylesheet" href="./assets/lovii.css">
+<link rel="stylesheet" href="./assets/site.css">
 </head>
-<body>
-
-<header class="top-header">
-  <div class="header-inner">
-    <a href="#" class="header-logo" aria-label="LOVII — наверх">
-      <img class="logo-light-img" src="img/logos/lovii-logo.svg" alt="LOVII" width="2444" height="512">
-      <img class="logo-dark-img" src="img/logos/lovii-logo_dark.svg" alt="LOVII" width="2444" height="512">
-    </a>
-    <nav class="header-nav" aria-label="Основная навигация">
-      <a href="#exec">Резюме</a>
-      <a href="#done">Сделано</a>
-      <a href="#now">Статус</a>
-      <a href="#roadmap">Роадмап</a>
-      <a href="#architecture">Архитектура</a>
-      <a href="#monetization">Монетизация</a>
-      <a href="#unit">Юнит</a>
-      <a href="#horizons">Горизонты</a>
-    </nav>
-    <button class="theme-btn" id="themeBtn" aria-label="Переключить тему">
-      <svg class="ico i-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"/></svg>
-      <svg class="ico i-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"/></svg>
-    </button>
-    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-    </button>
-  </div>
+<body data-sprite="./assets/icons.svg">
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"><i></i></div>
+<a class="visually-hidden" href="#main">К содержимому</a>
+<header class="site-header">
+<div class="header-in">
+<a class="logo" href="./" aria-label="LOVII — на главную"><img class="logo-light-img" src="./logo.svg" alt="LOVII" width="auto" height="30"><img class="logo-dark-img" src="./logo-dark.svg" alt="" aria-hidden="true"><span class="logo-tag">платформа<br>локальной экономики</span></a>
+<nav class="nav" aria-label="Основная навигация"><a href="./clients/">Покупателям</a><a href="./business/">Бизнесу</a><a href="./partners/">Партнёрам</a><a href="./ambassadors/">Амбассадорам</a><a href="./investors/">Инвесторам</a></nav>
+<button class="theme-btn" id="themeBtn" type="button" aria-label="Сменить тему" title="Сменить тему"><svg class="ico i-moon" aria-hidden="true"><use href="./assets/icons.svg#i-moon"></use></svg><svg class="ico i-sun" aria-hidden="true"><use href="./assets/icons.svg#i-sun"></use></svg></button>
+<a class="header-cta" href="#connect">Подключиться</a>
+<button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false"><svg class="ico" aria-hidden="true"><use href="./assets/icons.svg#i-menu"></use></svg></button>
+</div>
 </header>
-
 <div class="mobile-menu" id="mobileMenu">
-  <nav aria-label="Мобильное меню">
-    <a href="#exec">Резюме</a>
-    <a href="#done">Что сделано</a>
-    <a href="#now">Текущий статус</a>
-    <a href="#roadmap">Дорожная карта</a>
-    <a href="#architecture">Архитектура</a>
-    <a href="#monetization">Монетизация</a>
-    <a href="#unit">Юнит-экономика</a>
-    <a href="#horizons">Горизонты</a>
-    <a href="#" class="theme-link">Сменить тему</a>
-  </nav>
+<nav aria-label="Мобильная навигация"><a href="./clients/">Покупателям</a><a href="./business/">Бизнесу</a><a href="./partners/">Партнёрам</a><a href="./ambassadors/">Амбассадорам</a><a href="./investors/">Инвесторам</a><a class="m-cta" href="#connect">Подключиться</a></nav>
 </div>
+<main id="main">
+<section class="l-hero"><div class="orb orb-pink o1" aria-hidden="true"></div><div class="orb orb-tiffany o2" aria-hidden="true"></div><span class="ring" style="--s:220px;--x:62%;--y:8%" aria-hidden="true"></span><span class="ring t" style="--s:120px;--x:78%;--y:52%" aria-hidden="true"></span><span class="ring g" style="--s:90px;--x:6%;--y:70%" aria-hidden="true"></span><div class="wrap"><div class="l-hero-grid"><div class="l-hero-copy"><span class="kicker e1"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-pin"></use></svg>Приложение для твоего района</span><h1 class="e2">Всё нужное — <span class="hl-pink">в шаговой доступности</span></h1><p class="sub e3">Торговые точки твоего района выкладывают товары и услуги. Покажем, где что есть, сколько стоит&nbsp;— и сколько идти пешком.</p><p class="sub-note e3">LOVII соединяет жителей и местный бизнес в одном приложении.</p><div class="cta-row e4"><a class="btn btn-primary" href="#roles">Выбрать свою роль</a><span class="btn-split"><a class="btn btn-outline" href="https://app.lovii.ru/" target="_blank" rel="noopener noreferrer">Открыть приложение</a><a class="btn btn-outline t-tiffany btn-split-demo" href="https://lovii.mobiap.com/" target="_blank" rel="noopener noreferrer" title="Живое демо-стенд: каталог, всё можно потрогать, тестовая оплата картами"><span class="live-dot" aria-hidden="true"></span>Демо</a></span><a class="btn btn-soft" href="#connect"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-mail"></use></svg>Написать нам</a></div><div class="l-hero-meta e5"><span><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-rocket"></use></svg><span>Живое демо — <b>без регистрации</b></span></span><span><svg class="ico t" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-percent"></use></svg><span>нагрузка <b>не более 10%</b> против 20–45% у агрегаторов</span></span></div></div><div class="l-hero-pay e4"><div data-demo="paycard" data-skin="pay"></div></div></div></div></section><section class="trust-strip"><div class="wrap"><div class="trust-in"><div class="trust-logos"><span><b>Т-Банк</b> Мультирасчёты</span><span><svg class="ico" width="16" height="16" aria-hidden="true"><use href="./assets/icons.svg#i-shield"></use></svg> 54-ФЗ · ККТ платформы</span><span><svg class="ico" width="16" height="16" aria-hidden="true"><use href="./assets/icons.svg#i-bank"></use></svg> 161-ФЗ · спецсчёт 860.1</span><span>1 балл = 1 ₽</span><span id="utmBadge" class="utm-badge" style="display:none"></span></div><div class="trust-proof"><span class="st-chip stage"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-rocket"></use></svg>Этап: подключаем первые точки</span><span class="st-chip live"><span class="lv-dot"></span>Пилот: СПб · 5 локаций</span></div></div></div></section><section style="padding:16px 0;border-bottom:1px solid var(--lv-line)"><div class="wrap"><div class="status-row"><span class="st-chip"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-check-circle"></use></svg>Демо открыто · 3 роли</span><span class="st-chip"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-check-circle"></use></svg>Договор с банком подписан</span><span class="st-chip"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-check-circle"></use></svg>Эквайринг подключён</span><span class="st-chip"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-pin"></use></svg>Пилот: 50 точек цель</span></div></div></section>
+<section class="sec rv"><div class="wrap"><div class="open-banner rv"><span class="kicker"><svg class="ico" width="14" height="14"><use href="./assets/icons.svg#i-rocket"></use></svg>Мы открыты миру</span><h2>LOVII — мы открыты ко всему миру</h2><p class="lead">Платформа локальной экономики выходит из тени. Демо открыто, документы на GitHub с историей изменений, предрелиз на app.lovii.ru уже с боевым функционалом. Мы ищем первых партнёров, точки и инвесторов — честно, прозрачно, без скрытых уровней.</p><div class="open-status-grid"><div class="open-status"><b>🚀 Предрелиз</b><span>app.lovii.ru — PAY карта 9643..., 54-ФЗ, Т-Банк Мультирасчёты. Боевой функционал, не макет.</span></div><div class="open-status"><b>📄 Документы на GitHub</b><span>Все оферты и изменения — в git. Прозрачно для тех, кто в IT, и понятно для тех, кто в финтехе. Оригинал — GitHub, копия — на сайте.</span></div><div class="open-status"><b>💰 Открыты к инвестициям</b><span>Ищем первых ангелов и партнёров. Юнит-экономика открыта, калькуляторы в демо, финмодель в закрытом репо. Пиши фаундеру @bestdeejay</span></div></div><div class="cta-row"><a class="btn btn-white" href="https://app.lovii.ru/" target="_blank" rel="noopener" data-analytics="open_app">Открыть предрелиз</a><a class="btn btn-ghost-light" href="./investors/" data-analytics="open_investors">Инвесторам →</a><a class="btn btn-ghost-light" href="https://t.me/bestdeejay" target="_blank" rel="noopener" data-analytics="open_founder">Написать фаундеру @bestdeejay</a></div></div></div></section>
+<section class="sec t-surface rv" id="roles"><div class="wrap"><div class="sec-head"><h2>Кто ты на платформе?</h2><p class="lead">Выбери свою роль — откроется страница с тем, что тебе нужно: условия и форма подключения.</p></div><div class="grid g3"><a class="card f-card" href="./clients/"><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-users"></use></svg></span><h3 style="margin-top:14px">Покупателям</h3><p class="who">Жители района</p><p class="txt">Единая карта лояльности на все точки рядом. Баллы 1:1, не сгорают, тратятся у всех участников.</p><span class="go">Перейти на страницу роли <svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-arrow-right"></use></svg></span></a><a class="card f-card" href="./business/"><span class="ico-badge t-tiffany"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-store"></use></svg></span><h3 style="margin-top:14px">Бизнесу</h3><p class="who">Точки МСП</p><p class="txt">Инфраструктура под ключ: витрина, касса 54-ФЗ, эквайринг и лояльность. Подключаем первые точки — старт на тарифе СТАРТ 0%.</p><span class="go t-tiffany">Перейти на страницу роли <svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-arrow-right"></use></svg></span></a><a class="card f-card" href="./partners/"><span class="ico-badge t-gold"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-user-plus"></use></svg></span><h3 style="margin-top:14px">Партнёрам</h3><p class="who">Представители, Мэры, Губернаторы</p><p class="txt">Идёт набор в первые локации — Фрунзенский, Петроградский, Василеостровский, Мурино, Кудрово: подключайте точки и получайте 40% от пула платформы с каждой активной.</p><span class="go t-gold">Перейти на страницу роли <svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-arrow-right"></use></svg></span></a><a class="card f-card" href="./ambassadors/"><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-crown"></use></svg></span><h3 style="margin-top:14px">Амбассадорам</h3><p class="who">Лидеры локаций</p><p class="txt">Формируем амбассадоров первых городов: соберите сеть представителей и получайте 20% от пула сети + долю кэшбэк-комиссии.</p><span class="go">Перейти на страницу роли <svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-arrow-right"></use></svg></span></a><a class="card f-card" href="./investors/"><span class="ico-badge t-gold"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-rocket"></use></svg></span><h3 style="margin-top:14px">Инвесторам</h3><p class="who">Фонды и частные инвесторы</p><p class="txt">Модель платформы, прозрачная юнит-экономика и прогноз масштабирования на 5 лет.</p><span class="go t-gold">Перейти на страницу роли <svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-arrow-right"></use></svg></span></a></div></div></section><section class="sec t-mist-pink rv"><div class="wrap"><div class="sec-head"><h2>Как движутся деньги</h2><p class="lead">Прозрачная схема без тёмных углов: платёж идёт через банк-партнёр, платформа видит каждый рубль и распределяет пул по правилам, которые открыты для всех участников.</p></div><div class="steps"><div class="step"><span class="n">01</span><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-credit-card"></use></svg></span><h3>Покупатель платит</h3><p>Оплачивает заказ картой или СБП — как обычно, частично или полностью баллами.</p></div><div class="step"><span class="n">02</span><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-bank"></use></svg></span><h3>Банк-партнёр проводит платёж</h3><p>Расчёты идут через АО «Т-Банк» (продукт «Мультирасчёты»). Платформа не владеет товаром.</p></div><div class="step"><span class="n">03</span><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-coins"></use></svg></span><h3>Формируется пул платформы</h3><p>Из нагрузки не более 10%: <b>3,16% — банку</b>, <b>4,10% — маркетинг и поддержка сети</b> — амбассадоры и представители, <b>2,74% — инфраструктура платформы</b>. Пул 6,84% (карты) / 9,3% (СБП).</p></div><div class="step"><span class="n">04</span><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-wallet"></use></svg></span><h3>Баллы и выплаты</h3><p>Точка начисляет кэшбэк баллами, участники сети получают свои доли пула — 40/40/20.</p></div></div><div class="mt-24" data-demo="finance"></div></div></section><section class="sec rv"><div class="wrap"><div class="grid g2" style="align-items:center"><div><h2>Одна цепочка — справедливый сплит</h2><p class="lead">Ценность движется от компании к жителям, а доход возвращается всем участникам цепочки. Никаких скрытых уровней: распределение открыто и зафиксировано.</p><div class="chain mt-24"><span class="chain-chip"><b>Компания</b><span>платформа</span></span><span class="chain-sep">→</span><span class="chain-chip"><b>Амбассадор</b><span>сеть района</span></span><span class="chain-sep">→</span><span class="chain-chip"><b>Представитель</b><span>свои точки</span></span><span class="chain-sep">→</span><span class="chain-chip"><b>МСП</b><span>торговые точки</span></span><span class="chain-sep">→</span><span class="chain-chip"><b>Покупатель</b><span>жители</span></span></div></div><div class="card pad-lg"><h3>Распределение комиссии платформы</h3><p class="txt" style="margin-top:4px">Базовая схема для активных точек сети</p><div class="split mt-24"><div class="seg seg-ink" style="width:40%">40%</div><div class="seg seg-gold" style="width:40%">40%</div><div class="seg seg-pink" style="width:20%">20%</div></div><div class="split-legend"><span><i style="background:var(--lv-ink)"></i><b>Компания LOVII</b> — 40%</span><span><i style="background:var(--lv-gold)"></i><b>Представитель</b> — 40%</span><span><i style="background:var(--lv-pink)"></i><b>Амбассадор</b> — 20%</span></div><p class="sec-note">Доли от комиссии платформы с активных точек — сплит 40/40/20: Компания 40% · Представитель 40% · Амбассадор 20% — доли представителя и амбассадора это маркетинг и поддержка сети. Схема открыта и закреплена в оферте.</p></div></div></div></section><section class="sec rv"><div class="wrap"><div class="sec-head"><h2>Принципы, которые мы не нарушаем</h2></div><div class="grid g4"><div class="card"><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-shield"></use></svg></span><h3 style="margin-top:14px">Не владеем товаром</h3><p class="txt">Платформа — SaaS и агент по лицензии. Деньги покупателей проходят через банк-партнёр, а не через кассу платформы.</p></div><div class="card"><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-scale"></use></svg></span><h3 style="margin-top:14px">Дешевле федералов — принципиально</h3><p class="txt">Нагрузка на точку не более 10% против 20–45% у агрегаторов. Для растущих точек — тариф PRO со ставкой 4–7%.</p></div><div class="card"><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-pin"></use></svg></span><h3 style="margin-top:14px">Агрегируем локальное</h3><p class="txt">Экосистема строится вокруг района и города: свои точки, свои акции, свои баллы — вместо конкуренции с федералами на их условиях.</p></div><div class="card"><span class="ico-badge"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-coins"></use></svg></span><h3 style="margin-top:14px">Честная лояльность</h3><p class="txt">1 балл = 1 ₽, баллы не сгорают и тратятся у всех точек района. Каждый рубль кэшбэка привязан к чеку.</p></div></div></div></section><section class="sec t-surface rv" style="padding:44px 0"><div class="wrap"><div class="grid g3"><div class="fact fact-grad"><div class="v">в 2–4 раза</div><p class="l">ниже нагрузка на точку, чем у федеральных агрегаторов</p></div><div class="fact fact-tiffany"><div class="v">5 минут</div><p class="l">онбординг бизнеса на платформе — подключение по QR</p></div><div class="fact fact-gold"><div class="v">1 ₽</div><p class="l">курс балла, фиксированный: баллы не сгорают и выводятся через СБП</p></div></div></div></section>
 
-<main>
+<section class="sec rv"><div class="wrap"><div class="sec-head"><h2>Почему точки уходят с агрегаторов</h2><p class="lead">Сравнение на примере среднего оборота 144 000 ₽/мес. Комиссия LOVII — 10% без скрытых платежей, клиент остаётся у точки.</p></div><div class="compare"><div class="col bad"><h4><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-x"></use></svg> Федеральные агрегаторы</h4><ul><li><span class="ico-badge sm" style="background:var(--lv-grey-soft)"><svg class="ico" width="16" height="16"><use href="./assets/icons.svg#i-percent"></use></svg></span><span>Комиссия <b>20–45%</b> с заказа — до 64 800 ₽ с 144k оборота</span></li><li><span class="ico-badge sm" style="background:var(--lv-grey-soft)"><svg class="ico" width="16" height="16"><use href="./assets/icons.svg#i-users"></use></svg></span><span>Клиент и данные — у агрегатора, точка — поставщик</span></li><li><span class="ico-badge sm" style="background:var(--lv-grey-soft)"><svg class="ico" width="16" height="16"><use href="./assets/icons.svg#i-store"></use></svg></span><span>Своя лояльность невозможна, акции — по правилам площадки</span></li></ul></div><div class="col good"><h4><svg class="ico" width="18" height="18" style="color:var(--lv-tiffany)" aria-hidden="true"><use href="./assets/icons.svg#i-check"></use></svg> LOVII — платформа района</h4><ul><li><span class="ico-badge sm t-tiffany"><svg class="ico" width="16" height="16"><use href="./assets/icons.svg#i-percent"></use></svg></span><span><b>не более 10%</b> нагрузка, на PRO — 4–7% — 14 400 ₽ с 144k</span></li><li><span class="ico-badge sm t-tiffany"><svg class="ico" width="16" height="16"><use href="./assets/icons.svg#i-shield"></use></svg></span><span>Клиент, чек и данные — у точки, расчёты через Т-Банк</span></li><li><span class="ico-badge sm t-tiffany"><svg class="ico" width="16" height="16"><use href="./assets/icons.svg#i-gift"></use></svg></span><span>Конструктор лояльности: баллы 1:1, подарки без комиссии</span></li></ul><a class="btn btn-primary mt-16" href="./business/#tarify" data-analytics="compare_to_tariffs">Смотреть тарифы</a></div></div></div></section>
 
-<section class="hero" aria-label="О проекте">
-  <div class="ambient hero-decor-open" aria-hidden="true">
-    <div class="ring" style="--x:4%; --y:18%; --s:200px;" data-depth="0.6"></div>
-    <div class="ring tiffany" style="--x:82%; --y:12%; --s:150px;" data-depth="1.0"></div>
-    <div class="ring tiffany" style="--x:12%; --y:62%; --s:64px;" data-depth="0.5"></div>
-    <div class="ring gold" style="--x:86%; --y:58%; --s:78px;" data-depth="0.8"></div>
-    <span class="pulse" style="--x:80%; --y:26%; --s:9px; --pd:0s;" data-depth="0.9"></span>
-    <span class="pulse tiffany" style="--x:88%; --y:40%; --s:6px; --pd:1.1s;" data-depth="0.7"></span>
-    <span class="pulse gold" style="--x:9%; --y:36%; --s:7px; --pd:2.2s;" data-depth="0.8"></span>
-    <span class="pulse tiffany" style="--x:16%; --y:74%; --s:5px; --pd:1.7s;" data-depth="0.6"></span>
-  </div>
-  <span class="hero-kicker">
-    <svg class="ico-lo" aria-hidden="true"><use href="assets/icons.svg#i-lo"/></svg>
-    White Paper v2.0
-  </span>
-  <h1>LOVII — <span class="grad">от района<br>к Федерации</span></h1>
-  <p class="lead">White-label &amp; SaaS-платформа для запуска маркетплейсов микро- и малого бизнеса: отдельно взятое пространство, фуд-корт, торговый центр, район или город.</p>
-  <div class="hero-meta">
-    <span>Сентябрь 2026</span>
-    <span>·</span>
-    <span>Статус: MVP</span>
-    <span>·</span>
-    <span>ООО «Аксиома»</span>
-  </div>
-  <div class="hero-cta">
-    <a class="btn btn-primary" href="#exec">
-      Читать white paper
-      <svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-chevron-right"/></svg>
-    </a>
-    <a class="btn btn-ghost" href="https://axiiom-ru.github.io/lovii/" target="_blank" rel="noopener">
-      <svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-share"/></svg>
-      Открытая информация
-    </a>
-  </div>
-</section>
+<section class="sec t-surface rv"><div class="wrap"><div class="sec-head"><span class="kicker"><svg class="ico" width="14" height="14" aria-hidden="true"><use href="./assets/icons.svg#i-store"></use></svg>Условия для точек</span><h2>Бесплатное подключение — чистый 0% на старте</h2><p class="lead">Все точки стартуют без оплаты: подключение 0 ₽ и ноль комиссии платформы, пока выручка не выросла. Без абонентской платы и скрытых условий — правила зафиксированы в оферте.</p></div><div class="grid g4"><div class="card"><h3 style="font-size:17px;font-weight:800">0 ₽ за вход</h3><p class="txt">Подключение бесплатное: регистрация по QR за 5 минут, без предоплат и обязательств.</p></div><div class="card"><h3 style="font-size:17px;font-weight:800">Чистый 0% до 30 000 ₽</h3><p class="txt">Тариф СТАРТ: комиссия платформы 0% и эквайринг за счёт платформы — до 30 000 ₽ выручки или до конца следующего месяца.</p></div><div class="card"><h3 style="font-size:17px;font-weight:800">Потом — только % с оборота</h3><p class="txt">Автопереход на БАЗОВЫЙ 10% без абонентской платы. PRO 4–7% + 2 990 ₽/мес — если нужен расширенный набор.</p></div><div class="card"><h3 style="font-size:17px;font-weight:800">Касса не нужна</h3><p class="txt">Чеки по 54-ФЗ бьёт ККТ платформы — точке не нужна собственная касса.</p></div></div><p class="sec-note">Условия открыты: оферта присоединения и все изменения — в документах на GitHub.</p></div></section>
 
-<div class="wave" aria-hidden="true">
-  <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-    <path class="wampath1" d="M0,26 Q200,40 400,26 T800,26 T1200,26 L1200,64 L0,64 Z">
-      <animate attributeName="d" dur="9s" repeatCount="indefinite"
-        keyTimes="0;0.333;0.667;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
-        values="M0,26 Q200,40 400,26 T800,26 T1200,26 L1200,64 L0,64 Z;M0,30 Q200,18 400,30 T800,30 T1200,30 L1200,64 L0,64 Z;M0,22 Q200,36 400,22 T800,22 T1200,22 L1200,64 L0,64 Z;M0,26 Q200,40 400,26 T800,26 T1200,26 L1200,64 L0,64 Z"/>
-    </path>
-    <path class="wampath2" d="M0,38 Q200,26 400,38 T800,38 T1200,38 L1200,64 L0,64 Z">
-      <animate attributeName="d" dur="7s" begin="-3s" repeatCount="indefinite"
-        keyTimes="0;0.333;0.667;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
-        values="M0,38 Q200,26 400,38 T800,38 T1200,38 L1200,64 L0,64 Z;M0,34 Q200,44 400,34 T800,34 T1200,34 L1200,64 L0,64 Z;M0,42 Q200,30 400,42 T800,42 T1200,42 L1200,64 L0,64 Z;M0,38 Q200,26 400,38 T800,38 T1200,38 L1200,64 L0,64 Z"/>
-    </path>
-  </svg>
-</div>
+<section class="sec rv"><div class="wrap"><div class="grid g2" style="align-items:center"><div><h2>Подключение по QR — покажем за 30 секунд</h2><p class="lead">Сканируешь QR на стойке точки, выбираешь роль — кабинет открывается сразу. Без договоров на бумаге, без оборудования.</p><div class="qr-box mt-24"><div class="qr-img real"><img src="./assets/qr/app-lovii-ru-home.png" alt="QR app.lovii.ru" width="84" height="84" loading="lazy"></div><div><p><b>Два входа:</b> QR ведёт на предрелиз app.lovii.ru — боевой функционал, без регистрации. Кнопки — живое демо: витрина района «Тверской» и кабинет точки.</p><div class="mt-12" style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href="https://lovii.mobiap.com/#/home" target="_blank" rel="noopener" data-analytics="qr_demo_vitrina">Открыть витрину</a><a class="btn btn-outline" href="https://lovii.mobiap.com/#/profile" target="_blank" rel="noopener" data-analytics="qr_demo_cabinet">Кабинет точки</a></div><div class="qr-meta">QR — <a href="https://app.lovii.ru/">app.lovii.ru</a> · кнопки — живое демо</div></div></div></div><div><figure class="shot-card"><img src="./assets/shots/demo-vitrina.jpg" alt="Витрина района LOVII — демо" width="1280" height="900" loading="lazy"></figure><p class="shot-cap">Живое демо — обновляется ежедневно · <a href="https://lovii.mobiap.com/" target="_blank" rel="noopener noreferrer">открыть</a></p></div></div></div></section>
 
-<div class="container">
-
-  <div class="highlight" style="margin-top:36px;">
-    <strong>Открытая информация о платформе LOVII</strong> — актуальное описание, публичные оферты и схема движения средств опубликованы на отдельном ресурсе:
-    <a href="https://axiiom-ru.github.io/lovii/" target="_blank" rel="noopener">axiiom-ru.github.io/lovii</a>.
-  </div>
-
-  <nav class="toc" aria-label="Содержание">
-    <div class="toc-title">Содержание</div>
-    <ol>
-      <li><a href="#exec">Резюме проекта</a></li>
-      <li><a href="#done">Что сделано</a></li>
-      <li><a href="#now">Текущий статус</a></li>
-      <li><a href="#roadmap">Дорожная карта</a></li>
-      <li><a href="#architecture">Архитектура</a></li>
-      <li><a href="#monetization">Монетизация</a></li>
-      <li><a href="#unit">Юнит-экономика</a></li>
-      <li><a href="#horizons">Дальнейшие горизонты</a></li>
-    </ol>
-  </nav>
-
-  <!-- 01. Резюме -->
-  <section id="exec">
-    <span class="sec-kicker"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-info"/></svg>01 · Резюме</span>
-    <h2>Маркетплейс района за 5 минут</h2>
-    <p class="subtitle">Рыночная ниша, гипотеза, модель</p>
-
-    <p><strong>LOVII</strong> — white-label SaaS-платформа, которая позволяет запустить маркетплейс микро- и малого бизнеса в <strong>отдельно взятом районе</strong> города за 5 минут.</p>
-
-    <p>Ключевая гипотеза: малый бизнес в спальных районах не идёт на маркетплейсы федерального масштаба (WB, Ozon, Яндекс) из-за <strong>дорогой логистики, высоких комиссий и жёстких требований к обороту</strong>. При этом жители района <strong>готовы покупать локально</strong>, если предложение собрано в одном месте, а доставка занимает 15–30 минут. Жители знают локальных продавцов, но не всегда есть время зайти по пути и дождаться сборки заказа — и тогда покупка уходит на федеральные площадки вместе с комиссией. LOVII возвращает этот спрос в район.</p>
-
-    <p>LOVII создаёт изолированную экономику каждого района с собственной аудиторией, каталогом и курьерской сетью — на едином централизованном ядре.</p>
-
-    <div class="highlight">
-      <strong>Ёмкость рынка:</strong> только в Санкт-Петербурге ~40 спальных районов. При среднем GMV 5–10 млн ₽/мес на локацию — <strong>TAM 2–5 млрд ₽/год</strong> в одном городе.
-    </div>
-
-    <div class="stats-row">
-      <div class="stat tiffany"><div class="num">40%</div><div class="label">Retention D30 (цель)</div></div>
-      <div class="stat"><div class="num">&gt;3</div><div class="label">LTV / CAC (цель)</div></div>
-      <div class="stat"><div class="num">10%</div><div class="label">Комиссия с транзакции</div></div>
-      <div class="stat gold"><div class="num">2 990 ₽</div><div class="label">PRO-подписка / мес</div></div>
-    </div>
-  </section>
-
-  <!-- 02. Сделано -->
-  <section id="done">
-    <span class="sec-kicker pink"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-check"/></svg>02 · Сделано</span>
-    <h2>Что уже работает</h2>
-    <p class="subtitle">Бэклог первого спринта — выполнен</p>
-
-    <div class="card-grid">
-      <div class="doc-card">
-        <div class="tags"><span class="tag">Команда</span><span class="tag-date">09.25</span></div>
-        <div class="card-ico"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-user"/></svg></div>
-        <h3>Собрана команда LOVII</h3>
-        <p>Единомышленники и команда разработки: DevOps, Backend, Frontend + менеджер проекта — оптимальный состав для запуска.</p>
-      </div>
-      <div class="doc-card">
-        <div class="tags"><span class="tag">Документация</span><span class="tag-date">10.25</span></div>
-        <div class="card-ico tiffany"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-edit"/></svg></div>
-        <h3>Мокапы MVP</h3>
-        <p>15 экранов клиентских, бизнес- и административных интерфейсов: регистрация, авторизация, кабинет, профиль, каталоги, сценарии.</p>
-      </div>
-      <div class="doc-card">
-        <div class="tags"><span class="tag">Брендинг</span><span class="tag-date">11.25</span></div>
-        <div class="card-ico lo"><svg class="ico-lo" aria-hidden="true"><use href="assets/icons.svg#i-lo"/></svg></div>
-        <h3>Логотип и нейминг</h3>
-        <p>Три варианта лого LOVII / ЛОВИ: основной, минималистичный, значок. Теперь — и дизайн-система «Лови».</p>
-      </div>
-      <div class="doc-card">
-        <div class="tags"><span class="tag">Продукт</span><span class="tag-date">12.25</span></div>
-        <div class="card-ico"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-bag"/></svg></div>
-        <h3>LOVII Market</h3>
-        <p>Веб-витрина с каталогом товаров и услуг ритейла поставщиков.</p>
-      </div>
-      <div class="doc-card">
-        <div class="tags"><span class="tag">Демо</span><span class="tag-date">04.26</span></div>
-        <div class="card-ico tiffany"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-bot"/></svg></div>
-        <h3>Тестовые стенды</h3>
-        <p>Три демо-среды: витрина покупателя, B2B-кабинет поставщика и админ-панель оператора.</p>
-      </div>
-      <div class="doc-card">
-        <div class="tags"><span class="tag">Пилот</span><span class="tag-date">05.26</span></div>
-        <div class="card-ico gold"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-award"/></svg></div>
-        <h3>Мини-пилот</h3>
-        <p>Испытание с одной торговой точкой, QR-коды на столах партнёров. Продукт подтвердил спрос.</p>
-      </div>
-    </div>
-
-    <div class="highlight">
-      <strong>Ключевой вывод:</strong> продукт сформулирован, бренд создан, витрина работает. Мини-пилот подтвердил спрос. Следующий этап — 10–20 поставщиков в пилотном фуд-корте/районе.
-    </div>
-  </section>
-
-  <!-- 03. Статус -->
-  <section id="now">
-    <span class="sec-kicker"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg>03 · Статус</span>
-    <h2>Где мы сейчас</h2>
-    <p class="subtitle">Фаза MVP — сентябрь 2026</p>
-
-    <p>Проект находится в фазе <strong>MVP</strong>. Запущены и работают:</p>
-    <ul>
-      <li><strong>Домен и хостинг</strong> — lovii.ru (основной домен)</li>
-      <li><strong>LOVII Market</strong> — веб-витрина с каталогом товаров и услуг, отдельный каталог для каждого магазина</li>
-      <li><strong>Презентационные материалы</strong> — лендинг и pitch-презентация для инвесторов и партнёров</li>
-      <li><strong>Брендбук и дизайн-система</strong> — логотипы, палитра, визуальный стиль «Лови»</li>
-    </ul>
-
-    <p>Текущий фокус — <strong>выбор банка-партнёра, юридическое описание пилота, получение транзитного счёта, поиск места запуска и первых 10–20 поставщиков</strong> в пилотном районе Санкт-Петербурга и запуск MVP с реальными транзакциями.</p>
-
-    <div class="highlight">
-      <strong>Ближайшая веха:</strong> GMV 5 млн ₽/мес, 30+ активных точек, Retention D30 ≥ 40%.
-    </div>
-  </section>
-
-  <!-- 04. Роадмап -->
-  <section id="roadmap">
-    <span class="sec-kicker gold"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-calendar"/></svg>04 · Роадмап</span>
-    <h2>Три фазы роста</h2>
-    <p class="subtitle">От района к Федерации</p>
-
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="phase">Фаза 1 — MVP (6 мес)</div>
-        <h3>Запуск фуд-корта в пилотном пространстве</h3>
-        <p>10–20 поставщиков · модуль «Каталог» · приём онлайн-оплат · проверка гипотез спроса и юнит-экономики. <strong>Критерий:</strong> GMV ≥ 5 млн ₽/мес, Retention D30 ≥ 40%, LTV/CAC &gt; 3.</p>
-      </div>
-      <div class="tl-item phase-2">
-        <div class="phase">Фаза 2 — Сеть (12–18 мес)</div>
-        <h3>Репликация модели</h3>
-        <p>3–5 новых районов · white-label узлы с единой аналитикой · PRO-подписка · внешние B2B-партнёры (банки, телекомы). <strong>Критерий:</strong> 200+ точек, 30% PRO, положительная EBITDA узла.</p>
-      </div>
-      <div class="tl-item phase-3">
-        <div class="phase">Фаза 3 — Федерация (24+ мес)</div>
-        <h3>Федеральная сеть</h3>
-        <p>Кросс-локальный обмен товарами между районами · корпоративные программы · масштабирование по РФ и СНГ. <strong>Критерий:</strong> полная окупаемость платформы, NPS ≥ 40.</p>
-      </div>
-    </div>
-
-    <p>Переход между фазами происходит <strong>только</strong> после достижения целевых показателей юнит-экономики на текущем этапе.</p>
-  </section>
-
-  <!-- 05. Архитектура -->
-  <section id="architecture">
-    <span class="sec-kicker"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-shapes"/></svg>05 · Архитектура</span>
-    <h2>Единое ядро, локальная автономия</h2>
-    <p class="subtitle">Принцип white-label изоляции</p>
-
-    <p>Каждый район (узел) работает как независимый маркетплейс с собственным каталогом, аудиторией и курьерской сетью — но на единой кодовой базе.</p>
-
-    <div class="table-wrap">
-      <table>
-        <caption class="visually-hidden">Компоненты архитектуры LOVII: центральное ядро, white-label узел, API-слой, финансовый модуль</caption>
-        <thead>
-          <tr><th scope="col">Компонент</th><th scope="col">Описание</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Центральное ядро (Core)</td><td>Единая кодовая база, финансовая маршрутизация, безопасность, аналитика</td></tr>
-          <tr><td>White-label узел (район)</td><td>Свой бренд, каталог, аудитория, курьерская сеть, цены. Абсолютно независимая экономика</td></tr>
-          <tr><td>API-слой</td><td>Открытые API для внешних интеграций: банки, телекомы, HR-системы, муниципалитеты</td></tr>
-          <tr><td>Финансовый модуль</td><td>Маршрутизация платежей, автоматическое распределение комиссий, отложенные выплаты</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="highlight">
-      <strong>Ключевое преимущество:</strong> экономия на разработке (одно ядро), гибкость на периферии (каждый узел сам решает, как работать с локальным рынком).
-    </div>
-  </section>
-
-  <!-- 06. Монетизация -->
-  <section id="monetization">
-    <span class="sec-kicker gold"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-gem"/></svg>06 · Монетизация</span>
-    <h2>Четыре столпа выручки</h2>
-    <p class="subtitle">Комиссия, подписка, реклама, API</p>
-
-    <div class="card-grid">
-      <div class="doc-card">
-        <div class="value tiffany">10%</div>
-        <h3>Транзакционная комиссия</h3>
-        <p>С денежной части оплаты. 0% для оборота до 30 000 ₽/мес — порог входа для микробизнеса.</p>
-      </div>
-      <div class="doc-card">
-        <div class="value gold">2 990 ₽</div>
-        <h3>PRO-подписка</h3>
-        <p>Фиксированная ставка в месяц. Комиссия снижается до 4–6%. Для активных поставщиков.</p>
-      </div>
-      <div class="doc-card">
-        <div class="value">Реклама</div>
-        <h3>Продвижение</h3>
-        <p>Закреплённые позиции в витрине, нативные подборки, спонсорство категорий.</p>
-      </div>
-      <div class="doc-card">
-        <div class="value tiffany">B2B API</div>
-        <h3>Интеграции</h3>
-        <p>Бартерный доступ к API для банков, телекомов, HR-систем и муниципалитетов.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 07. Юнит-экономика -->
-  <section id="unit">
-    <span class="sec-kicker pink"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-star"/></svg>07 · Юнит-экономика</span>
-    <h2>Целевые показатели MVP</h2>
-    <p class="subtitle">Считаем каждый узел до масштабирования</p>
-
-    <div class="card-grid">
-      <div class="doc-card"><div class="value">5 млн ₽</div><p>GMV в месяц</p></div>
-      <div class="doc-card"><div class="value tiffany">500+</div><p>Активных пользователей</p></div>
-      <div class="doc-card"><div class="value">30+</div><p>Подключённых точек</p></div>
-      <div class="doc-card"><div class="value tiffany">40%</div><p>Retention Day 30</p></div>
-      <div class="doc-card"><div class="value gold">&gt; 3</div><p>LTV / CAC</p></div>
-    </div>
-
-    <div class="calc-grid">
-      <div class="calc">
-        <h3>Базовый расчёт оборота одной точки</h3>
-        <div class="calc-row"><span class="label">Средний чек</span><span class="value">1 200 ₽</span></div>
-        <div class="calc-row"><span class="label">Транзакций в день</span><span class="value">4</span></div>
-        <div class="calc-row"><span class="label">Дней в месяце</span><span class="value">30</span></div>
-        <div class="calc-row result"><span class="label">Оборот одной точки / мес</span><span class="value">144 000 ₽</span></div>
-      </div>
-      <div class="calc">
-        <h3>Целевой расчёт для MVP</h3>
-        <div class="calc-row"><span class="label">Целевой GMV / мес</span><span class="value">5 000 000 ₽</span></div>
-        <div class="calc-row"><span class="label">Необходимо чеков / мес</span><span class="value">4 167</span></div>
-        <div class="calc-row"><span class="label">Необходимо чеков / день</span><span class="value">~139</span></div>
-        <div class="calc-row"><span class="label">Необходимо активных точек</span><span class="value">~35</span></div>
-        <div class="calc-row result"><span class="label">Цель по точкам</span><span class="value">30+</span></div>
-      </div>
-    </div>
-
-    <p>При достижении этих показателей в пилотном районе платформа масштабируется на следующие локации. Каждый новый узел запускается только при условии положительной юнит-экономики предыдущего.</p>
-
-    <div class="highlight">
-      <strong>Принцип:</strong> масштабирование начинается <strong>только</strong> после достижения юнит-экономики на предыдущем узле. Это исключает кассовые разрывы.
-    </div>
-  </section>
-
-  <!-- 08. Горизонты -->
-  <section id="horizons">
-    <span class="sec-kicker gold"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-flame"/></svg>08 · Горизонты</span>
-    <h2>Больше, чем витрина</h2>
-    <p class="subtitle">Дальнейшие горизонты</p>
-
-    <div class="card-grid">
-      <div class="doc-card">
-        <div class="card-ico"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-home"/></svg></div>
-        <h3>B2G и муниципалитеты</h3>
-        <p>Помощник администрации по развитию МСП. Социальные льготы и сертификаты для локальных предпринимателей.</p>
-      </div>
-      <div class="doc-card">
-        <div class="card-ico tiffany"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-share"/></svg></div>
-        <h3>Экспансия в СНГ</h3>
-        <p>Репликация SaaS-модели в странах ближнего зарубежья с адаптацией под местное законодательство.</p>
-      </div>
-      <div class="doc-card">
-        <div class="card-ico gold"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-gift"/></svg></div>
-        <h3>Локальные токены</h3>
-        <p>Планируется эмиссия локальных цифровых валют для внутренних расчётов внутри районов (в процессе оформления с банком-партнёром). NFT-сертификаты.</p>
-      </div>
-    </div>
-
-    <p>Эти направления не входят в ближайший роадмап, но формируют долгосрочное видение продукта.</p>
-
-    <div class="cta-block">
-      <h3>Хочешь построить цифровую инфраструктуру локальной экономики?</h3>
-      <p>LOVII — от района к Федерации</p>
-      <p class="cta-links">
-        <strong>Email:</strong> <a href="mailto:hello@axiiom.ru">hello@axiiom.ru</a> ·
-        <strong>Тел.:</strong> <a href="tel:+78129287478">+7 812 928-74-78</a>
-      </p>
-    </div>
-  </section>
-
-</div>
-
-<div class="wave" aria-hidden="true">
-  <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-    <path class="wampath2" d="M0,30 Q200,42 400,30 T800,30 T1200,30 L1200,64 L0,64 Z">
-      <animate attributeName="d" dur="8s" begin="-2s" repeatCount="indefinite"
-        keyTimes="0;0.333;0.667;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
-        values="M0,30 Q200,42 400,30 T800,30 T1200,30 L1200,64 L0,64 Z;M0,36 Q200,24 400,36 T800,36 T1200,36 L1200,64 L0,64 Z;M0,26 Q200,40 400,26 T800,26 T1200,26 L1200,64 L0,64 Z;M0,30 Q200,42 400,30 T800,30 T1200,30 L1200,64 L0,64 Z"/>
-    </path>
-    <path class="wampath1" d="M0,40 Q200,28 400,40 T800,40 T1200,40 L1200,64 L0,64 Z">
-      <animate attributeName="d" dur="10s" begin="-5s" repeatCount="indefinite"
-        keyTimes="0;0.333;0.667;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"
-        values="M0,40 Q200,28 400,40 T800,40 T1200,40 L1200,64 L0,64 Z;M0,44 Q200,34 400,44 T800,44 T1200,44 L1200,64 L0,64 Z;M0,36 Q200,46 400,36 T800,36 T1200,36 L1200,64 L0,64 Z;M0,40 Q200,28 400,40 T800,40 T1200,40 L1200,64 L0,64 Z"/>
-    </path>
-  </svg>
-</div>
-
-<footer>
-  ООО «Аксиома» · ИНН 7842223709 · г. Санкт-Петербург, ул. Профессора Качалова, д. 15А, лит. А<br>
-  Открытая информация: <a href="https://axiiom-ru.github.io/lovii/" target="_blank" rel="noopener">axiiom-ru.github.io/lovii</a><br>
-  © 2026 LOVII · White Paper v2.0 · собрано на дизайн-системе «Лови»
-</footer>
-
-<button class="up-btn" id="upBtn" aria-label="Наверх">
-  <svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up"/></svg>
-</button>
-
-<script src="assets/site.js" defer></script>
-
-
-</div>
-
+<section class="sec anchor-screen" id="connect"><div class="wrap"><div class="cta-band"><h2>Не нашли свою роль — напиши нам</h2><p>Расскажи, кто ты и как хотел бы участвовать в платформе. Команда LOVII ответит и подберёт формат участия.</p><div class="cta-row"><a class="btn btn-white" href="mailto:hello@lovii.ru"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-mail"></use></svg>Написать на почту</a><a class="btn btn-ghost-light" href="#roles"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="./assets/icons.svg#i-qr"></use></svg>Смотреть роли</a></div></div></div></section>
 </main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="foot-grid">
+<div>
+<span class="logo"><img class="logo-light-img" src="./logo.svg" alt="LOVII" width="auto" height="30"><img class="logo-dark-img" src="./logo-dark.svg" alt="" aria-hidden="true"></span>
+<p class="foot-about">Цифровая платформа локальной экономики: витрина района, общая программа лояльности и честное распределение дохода.</p>
+<ul class="soc-list"><li><a href="https://t.me/loviiru" target="_blank" rel="noopener noreferrer" aria-label="Telegram LOVII — анонсы и запуски"><span class="soc-mark" aria-hidden="true">TG</span><span class="soc-txt"><b>Telegram</b><i>Анонсы и запуски</i></span></a></li><li><a href="https://vk.ru/loviiru" target="_blank" rel="noopener noreferrer" aria-label="LOVII во ВКонтакте — сообщество"><span class="soc-mark" aria-hidden="true">VK</span><span class="soc-txt"><b>ВКонтакте</b><i>Сообщество</i></span></a></li><li><a href="https://max.ru/channel_lovii" target="_blank" rel="noopener noreferrer" aria-label="Новости платформы — канал LOVII в Max"><span class="soc-mark" aria-hidden="true">MAX</span><span class="soc-txt"><b>Новости платформы</b><i>Запуски и отчёты в Max</i></span></a></li><li><a href="mailto:hello@lovii.ru" aria-label="Поддержка — написать на почту"><span class="soc-mark" aria-hidden="true">@</span><span class="soc-txt"><b>Поддержка</b><i>hello@lovii.ru</i></span></a></li></ul>
+</div>
+<nav aria-label="Аудитории"><h3>Аудитории</h3><ul><li><a href="./clients/">Покупателям</a></li><li><a href="./business/">Бизнесу</a></li><li><a href="./partners/">Партнёрам</a></li><li><a href="./ambassadors/">Амбассадорам</a></li><li><a href="./investors/">Инвесторам</a></li></ul></nav>
+<div><h3>Документы</h3><ul><li><a href="./roadmap/">Дорожная карта</a></li><li><a href="https://axiiom-ru.github.io/lovii/" target="_blank" rel="noopener noreferrer">Публичные документы</a></li><li><a href="https://axiiom-ru.github.io/lovii/docs/%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F_%D0%BE%D1%84%D0%B5%D1%80%D1%82%D0%B0.html" target="_blank" rel="noopener noreferrer">Публичная оферта</a></li><li><a href="https://axiiom-ru.github.io/lovii/docs/%D0%9E%D1%84%D0%B5%D1%80%D1%82%D0%B0_%D0%BF%D1%80%D0%B8%D1%81%D0%BE%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F.html" target="_blank" rel="noopener noreferrer">Оферта присоединения</a></li></ul><p class="foot-note">Расчёты — через АО «Т-Банк» (продукт «Мультирасчёты»).</p></div>
+<div><h3>Оператор платформы</h3><ul class="foot-legal"><li class="strong">ООО «АКСИОМА»</li><li>ИНН 7842223709</li><li>ОГРН 1247800067690</li><li><a href="mailto:hello@lovii.ru">hello@lovii.ru</a></li><li>Фаундер: <a href="https://t.me/bestdeejay" target="_blank" rel="noopener" style="color:var(--lv-pink);font-weight:700">@bestdeejay</a></li></ul><p class="foot-note">Подписка представителя — 599 ₽/мес, акция — 199 ₽/мес по промокоду Амбассадора.</p></div>
+</div>
+</div>
+<div class="foot-bottom"><div class="wrap"><div class="in"><span class="brandline">© 2026 <b>lov<span style="color:var(--lv-pink)">ii</span></b><i></i> · ООО «АКСИОМА»</span><span>Прогнозные показатели не являются гарантией доходности.</span></div></div></div>
+</footer>
+<button class="up-btn" id="upBtn" type="button" aria-label="Наверх"><svg class="ico" aria-hidden="true"><use href="./assets/icons.svg#i-arrow-up"></use></svg></button>
+<div class="sticky-cta" id="stickyCta"><span class="txt"><b>Подключить район за 5 минут</b>Демо открыто · Т-Банк · 54-ФЗ</span><a class="btn btn-primary" href="#roles" data-analytics="sticky_roles">Выбрать роль</a></div>
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"LOVII","url":"https://lovii.ru/","logo":"https://lovii.ru/logo.svg","description":"Платформа локальной экономики: витрина района, лояльность 1 балл = 1 ₽, честный сплит 40/40/20","sameAs":["https://t.me/loviiru","https://vk.ru/loviiru"],"foundingDate":"2025-09","address":{"@type":"PostalAddress","addressLocality":"Санкт-Петербург","addressCountry":"RU"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://lovii.ru/"},{"@type":"ListItem","position":2,"name":"Покупателям","item":"https://lovii.ru/clients/"},{"@type":"ListItem","position":3,"name":"Бизнесу","item":"https://lovii.ru/business/"},{"@type":"ListItem","position":4,"name":"Партнёрам","item":"https://lovii.ru/partners/"}]}</script>
+<script src="./assets/lovii-demo-data.js"></script>
+<script src="./assets/site.js" defer></script>
 </body>
 </html>
