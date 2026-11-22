@@ -1,0 +1,124 @@
+# Публикация стенда (bestdeejay-design/lovii-site) на прод (этот репо → lovii.ru).
+#
+# ПОЧЕМУ ЗДЕСЬ, А НЕ В СТЕНДЕ:
+# раньше workflow жил в репо стенда и ходил в прод по PAT (LOVII_PROD_SYNC_TOKEN).
+# Отозвали PAT — публикация умерла, и починить её можно только новым токеном.
+# Здесь наоборот: workflow живёт в прод-репо, читает стенд (он публичный) и пишет
+# в свой же репозиторий штатным GITHUB_TOKEN, который не истекает и не требует
+# ручных секретов.
+#
+# Запуск (только вручную):
+#   gh workflow run sync-from-stage --repo bestdeejay-design/lovii -f confirm=PUBLISH
+#   gh workflow run sync-from-stage --repo bestdeejay-design/lovii -f confirm=ROLLBACK -f tag=prod-YYYYMMDD-HHMMSS
+
+name: sync-from-stage
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'PUBLISH — деплой на lovii.ru | ROLLBACK — откат к тегу из поля tag'
+        required: true
+      tag:
+        description: 'Только для ROLLBACK: тег вида prod-YYYYMMDD-HHMMSS'
+        required: false
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  publish:
+    if: github.event.inputs.confirm == 'PUBLISH'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout prod
+        uses: actions/checkout@v4
+        with:
+          path: prod
+          fetch-depth: 0
+
+      - name: Checkout stage
+        uses: actions/checkout@v4
+        with:
+          repository: bestdeejay-design/lovii-site
+          ref: main
+          path: stage
+
+      - name: Archive current prod
+        working-directory: prod
+        run: |
+          git config user.name "lovii-ci"
+          git config user.email "ci@lovii.ru"
+          TAG="prod-$(date -u +%Y%m%d-%H%M%S)"
+          git tag "$TAG"
+          git push origin tag "$TAG"
+          echo "Archived prod as $TAG"
+
+      - name: Sync stage → prod
+        run: |
+          cd stage
+          for f in 404.html index.html robots.txt sitemap.xml og-image.png manifest.webmanifest favicon.svg favicon.png logo.svg logo-dark.svg lovii-icon.svg lovii-icon-180.png lovii-icon-192.png lovii-icon-512.png google*.html; do
+            [ -e "$f" ] && cp "$f" ../prod/"$f"
+          done
+          for d in ambassadors business clients investors partners roadmap journal assets; do
+            [ -d "$d" ] && { mkdir -p ../prod/"$d"; rsync -a --delete --exclude='.DS_Store' "$d"/ ../prod/"$d"/; }
+          done
+          echo "--- synced diff ---"
+          cd ../prod && git status --short | head -30
+
+      - name: Commit and push prod
+        id: push
+        working-directory: prod
+        run: |
+          STAGE_SHA=$(git -C ../stage rev-parse --short=12 HEAD)
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes — prod already in sync."
+            echo "pushed=0" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore(prod): sync from lovii-site@${STAGE_SHA}"
+            git push origin main
+            echo "pushed=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Пуш от GITHUB_TOKEN не запускает другие workflow, поэтому сборку Pages
+      # просим явно — иначе lovii.ru останется на старой версии.
+      - name: Rebuild Pages
+        if: steps.push.outputs.pushed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" --silent \
+            && echo "Pages build requested" \
+            || echo "::warning::Pages build не запросился — проверь Settings → Pages"
+
+  rollback:
+    if: github.event.inputs.confirm == 'ROLLBACK'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout prod
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Rollback to tag
+        run: |
+          TAG="${{ github.event.inputs.tag }}"
+          case "$TAG" in prod-*) ;; *) echo "::error::Тег должен начинаться с prod- (например prod-20261122-211034)"; exit 1;; esac
+          git rev-parse -q --verify "refs/tags/$TAG" >/dev/null || { echo "::error::Тег $TAG не найден"; exit 1; }
+          git config user.name "lovii-ci"
+          git config user.email "ci@lovii.ru"
+          git checkout "$TAG"
+          git checkout -B main
+          git push --force-with-lease origin main
+          echo "Rolled back prod to $TAG"
+
+      - name: Rebuild Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" --silent \
+            && echo "Pages build requested" \
+            || echo "::warning::Pages build не запросился — проверь Settings → Pages"
